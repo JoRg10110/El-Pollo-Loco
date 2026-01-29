@@ -1,0 +1,16 @@
+# Abhängigkeiten
+node_modules/
+dist/
+build/
+
+# Betriebssystem-Dateien
+.DS_Store
+Thumbs.db
+
+# VS Code Einstellungen
+.vscode/
+*.log
+
+# Temporäre Ordner
+temp/
+tmp/
