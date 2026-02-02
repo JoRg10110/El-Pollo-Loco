@@ -7,3 +7,12 @@ body {
 canvas {
     background-color: black;
 }
+
+#btn {
+    display: flex;
+    width: 720px;
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: start;
+    
+}

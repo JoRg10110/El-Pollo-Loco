@@ -3,6 +3,16 @@ let world;
 let keyboard = new Keyboard();
 
 
+function goFullScreen() {
+    let canvas = document.getElementById("canvas");
+    if (canvas.requestFullscreen)
+        canvas.requestFullscreen();
+    // else if (canvas.webkitRequestFullScreen)
+    //     canvas.webkitRequestFullScreen();
+    // else if (canvas.mozRequestFullScreen)
+    //     canvas.mozRequestFullScreen();
+}
+
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard); 

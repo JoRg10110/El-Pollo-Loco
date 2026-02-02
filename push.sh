@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# zum starten ./push.sh 
 
 # 1. Alle Änderungen sammeln
 git add .
