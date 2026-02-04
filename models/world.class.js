@@ -105,7 +105,7 @@ class World {
         this.throwableObject.forEach((bottle) => {
             if (bottle.isColliding(endboss) && !bottle.isBreaking) {
                 bottle.splash();
-                endboss.hit(60);
+                endboss.hit(20);
                 this.statusBarEndboss.setEndbossPercentage(endboss.energy);
   
                 console.log('Endboss hit!');
