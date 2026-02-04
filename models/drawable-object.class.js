@@ -22,53 +22,57 @@ class DrawableObject {
     }
 
     drawFrame(ctx){
-
-        if (this instanceof Character || 
-            this instanceof Chicken || 
-            this instanceof Endboss || 
-            this instanceof ThrowableObject || 
-            this instanceof CollectableBottle || 
-            this instanceof CollectableCoin
-        ) {
-
-        // Äußerer Rahmen Blau
-        ctx.beginPath();
-        ctx.lineWidth = '1';
-        ctx.strokeStyle = 'blue';
-        ctx.rect(this.x, this.y, this.width, this.height);
-        ctx.stroke();
-
-        // Innerer Rahmen Rot
-        ctx.beginPath();
-        ctx.lineWidth = '2';
-        ctx.strokeStyle = 'red';
-        ctx.rect(
-            this.x + this.hitboxOffsetX, 
-            this.y + this.hitboxOffsetY, 
-            this.width - this.hitboxWidth, 
-            this.height - this.hitboxHeight
-        );
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.lineWidth = '2';
-        ctx.strokeStyle = 'green';
-        ctx.rect(
-            this.x + this.hitboxBodyOffsetX, 
-            this.y + this.hitboxBodyOffsetY, 
-            this.width - this.hitboxBodyWidth, 
-            this.height - this.hitboxBodyHeight
-        );
-        ctx.stroke();
-
-        // if(this instanceof Character) {
-        //     this.logHitbox();
-        // }
-
+        if (debugMode) {
+            
+            if (this instanceof Character || 
+                this instanceof Chicken || 
+                this instanceof Endboss || 
+                this instanceof ThrowableObject || 
+                this instanceof CollectableBottle || 
+                this instanceof CollectableCoin
+            ) {
+    
+            // Äußerer Rahmen Blau
+            ctx.beginPath();
+            ctx.lineWidth = '1';
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+    
+            // Innerer Rahmen Rot
+            ctx.beginPath();
+            ctx.lineWidth = '2';
+            ctx.strokeStyle = 'red';
+            ctx.rect(
+                this.x + this.hitboxOffsetX, 
+                this.y + this.hitboxOffsetY, 
+                this.width - this.hitboxWidth, 
+                this.height - this.hitboxHeight
+            );
+            ctx.stroke();
+    
+            ctx.beginPath();
+            ctx.lineWidth = '2';
+            ctx.strokeStyle = 'green';
+            ctx.rect(
+                this.x + this.hitboxBodyOffsetX, 
+                this.y + this.hitboxBodyOffsetY, 
+                this.width - this.hitboxBodyWidth, 
+                this.height - this.hitboxBodyHeight
+            );
+            ctx.stroke();
+    
+            // if(this instanceof Character) {
+            //     this.logHitbox();
+            // }
+    
+            }
+    
+    
+        }
         }
 
-
-    }
+        
     
     loadImages(arr){
         arr.forEach((path) => {

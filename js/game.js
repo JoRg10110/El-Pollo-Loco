@@ -1,7 +1,14 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let debugMode = false;
 
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'b' || e.key === 'B') {
+        debugMode = !debugMode;
+        
+    }
+})
 
 function goFullScreen() {
     let canvas = document.getElementById("canvas");
