@@ -68,6 +68,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_WALKING);
 
+        this.isAlreadyDead = false;
         this.x = this.startX;
         this.animate();
         this.applyGravity();
@@ -117,7 +118,15 @@ class Endboss extends MovableObject {
             
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-            
+
+                if (!this.isAlreadyDead) {
+                    this.isAlreadyDead = true;
+
+                    setTimeout (() => {
+                        this.removed = true;
+                    }, 300);
+                }
+
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             
