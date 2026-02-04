@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>El Pollo Loco</title>
+    <script src="../El_Pollo_Loco/models/drawable-object.class.js"></script>
+    <script src="../El_Pollo_Loco/models/movable-object.class.js"></script>
+    <script src="../El_Pollo_Loco/models/collectable-objects.class.js"></script>
+
+    <!-- Statusbar -->
+    <script src="../El_Pollo_Loco/models/status-bar-health.class.js"></script>
+    <script src="../El_Pollo_Loco/models/status-bar-coin.class.js"></script>
+    <script src="../El_Pollo_Loco/models/status-bar-bottle.class.js"></script>
+    <script src="../El_Pollo_Loco/models/status-bar-endboss.class.js"></script>
+    <!-- Game Objects -->
+    <script src="../El_Pollo_Loco/models/character.class.js"></script>
+    <script src="../El_Pollo_Loco/models/chicken.class.js"></script>
+    <script src="../El_Pollo_Loco/models/cloud.class.js"></script>
+    <script src="../El_Pollo_Loco/models/background-object.class.js"></script>
+    <script src="../El_Pollo_Loco/models/endboss.class.js"></script>
+    <script src="../El_Pollo_Loco/models/throwable-object.class.js"></script>
+    <script src="../El_Pollo_Loco/models/collectable-bottle.class.js"></script>
+    <script src="../El_Pollo_Loco/models/collectable-coin.class.js"></script>
+
+
+    <!-- Levels -->
+    <script src="../El_Pollo_Loco/models/levels.class.js"></script>
+    <script src="../El_Pollo_Loco/levels/level1.js"></script>
+    <!-- World  -->
+    <script src="../El_Pollo_Loco/models/world.class.js"></script>
+    <!-- Keyboard + Startlogik  -->
+    <script src="../El_Pollo_Loco/models/keyboard.class.js"></script>
+    <script src="../El_Pollo_Loco/js/game.js" ></script>
+
+</head>
+<body onload="init()">
+    <h1>El Pollo Loco</h1>
+
+    <canvas id="canvas" width="720" height="480">
+    </canvas>
+    <div id="all-btn">
+        <div id="play-btn">
+            <img src="./img/btn/left-arrow.png" width="50px" height="50px"> Left
+            <img src="./img/btn/right-arrow.png" width="50px" height="50px"> Right
+            <img src="./img/btn/space.png" width="50px" height="50px"> Jump
+            <img src="./img/btn/letter-d.png" width="50px" height="50px"> Throw
+        </div>
+        <div id="btn">
+            <button onclick="goFullScreen()"><img src="./img/btn/maximize.png" width="30px"></button>
+        </div>
+    </div>
+
+</body>
+</html>
