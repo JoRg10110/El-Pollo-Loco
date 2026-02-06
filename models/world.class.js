@@ -84,6 +84,7 @@ class World {
             if (this.character.isColliding(coin)) {
                 this.level.collectableCoins.splice(index, 1);
                 this.statusBarCoin.addCoin();
+                coin_sound.play();
                 console.log('Coin collected!');
             }
         });
@@ -139,6 +140,7 @@ class World {
                     console.log('Huhn getroffen! Energie:', enemy.energy);
                 } else {
                     this.character.hit();
+                    hurt_sound.play();
                     this.statusBarHealth.setHealthPercentage(this.character.energy);
                 }
             }
@@ -148,6 +150,7 @@ class World {
     cleanUp () {
         this.level.enemies = this.level.enemies.filter(enemy => !enemy.removed);
     }
+
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // clear canvas
         

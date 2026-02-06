@@ -18,6 +18,7 @@ class Endboss extends MovableObject {
     hitboxBodyWidth = this.width -150;
     hitboxBodyHeight = this.height - 50; // Geht bis zum Boden
 
+
     IMAGES_WALKING = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
         'img/4_enemie_boss_chicken/1_walk/G2.png',
@@ -143,6 +144,7 @@ class Endboss extends MovableObject {
             } else {
                 // Solange er den Character noch nie gesehen hat
                 this.playAnimation(this.IMAGES_ALERT);
+
             }
         }, 200);
     }
