@@ -33,15 +33,7 @@ class Chicken extends MovableObject {
         setInterval(() => {
 
             if (this.isDead()){
-                this.playAnimation(this.IMAGES_DEAD);
-                
-                if (!this.isAlreadyDead) {
-                    this.isAlreadyDead = true;
-
-                    setTimeout (() => {
-                        this.removed = true;
-                    }, 300);
-                }
+                this.handleDeath();
 
             } else if (!this.isDead()) {
                 this.playAnimation(this.IMAGES_WALKING);
@@ -49,4 +41,15 @@ class Chicken extends MovableObject {
     }, 100);
     }
     
+    handleDeath() {
+        this.playAnimation(this.IMAGES_DEAD);
+                
+        if (!this.isAlreadyDead) {
+            this.isAlreadyDead = true;
+
+            setTimeout (() => {
+                this.removed = true;
+            }, 300);
+        }
+    }
 }

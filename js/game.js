@@ -5,7 +5,8 @@ let debugMode = false;
 
 coin_sound = new Audio('./audio/mixkit-winning-a-coin-video-game-2069.wav');
 // hurt_sound = new Audio('./audio/Brrr-sound-effect.mp3');
-endboss_warn = new Audio('./audio/Enboss_warn.mp3')
+endboss_warn = new Audio('./audio/Enboss_warn.mp3');
+chicken_sound = new Audio('./audio/chicken_sound.mp3');
 
 window.addEventListener('keydown', (e) => {
     if (e.key === 'b' || e.key === 'B') {
@@ -22,6 +23,13 @@ function goFullScreen() {
     //     canvas.webkitRequestFullScreen();
     // else if (canvas.mozRequestFullScreen)
     //     canvas.mozRequestFullScreen();
+}
+
+function startGame() {
+    document.getElementById('start-screen').classList.add('d-none');
+    document.getElementById('all-btn').classList.remove('d-none');
+
+    init();
 }
 
 function init() {
