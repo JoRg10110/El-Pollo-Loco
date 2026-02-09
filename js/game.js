@@ -29,6 +29,7 @@ function startGame() {
     document.getElementById('start-screen').classList.add('d-none');
     document.getElementById('all-btn').classList.remove('d-none');
 
+    initLevel();
     init();
 }
 
