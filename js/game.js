@@ -29,6 +29,7 @@ function goFullScreen() {
 
 function startGame() {
     document.getElementById('start-screen').classList.add('d-none');
+    document.getElementById('game-over-screen').classList.add('d-none');
     document.getElementById('all-btn').classList.remove('d-none');
 
     initLevel();

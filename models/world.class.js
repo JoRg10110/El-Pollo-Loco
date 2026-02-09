@@ -38,7 +38,9 @@ class World {
             this.checkEndbossVisibility();
             this.checkBottleHitEndboss();
             this.checkEndbossCollision();
+            // console.log('Check läuft...');
             this.checkChickenCollision();
+            this.gameOver();
             this.cleanUp();
         }, 100);
     }
@@ -106,7 +108,7 @@ class World {
         this.throwableObject.forEach((bottle) => {
             if (bottle.isColliding(endboss) && !bottle.isBreaking) {
                 bottle.splash();
-                endboss.hit(20);
+                endboss.hit(100);
                 this.statusBarEndboss.setEndbossPercentage(endboss.energy);
   
                 console.log('Endboss hit!');
@@ -140,11 +142,23 @@ class World {
                     console.log('Huhn getroffen! Energie:', enemy.energy);
                 } else {
                     this.character.hit();
-                    hurt_sound.play();
+                    // hurt_sound.play();
                     this.statusBarHealth.setHealthPercentage(this.character.energy);
                 }
             }
         });
+    }
+
+    gameOver(){
+        if (this.character.isDead() || this.level.endboss.isDead()){
+            setTimeout (() => {
+                stopGame();
+                document.getElementById('game-over-screen').classList.remove('d-none');
+                document.getElementById('canvas').classList.add('d-none');
+                document.getElementById('all-btn').classList.add('d-none');
+                console.log('Game Over');
+            }, 1500);
+        }
     }
 
     cleanUp () {
