@@ -2,6 +2,8 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let debugMode = false;
+let intervalIds = [];
+let i = 1;
 
 coin_sound = new Audio('./audio/mixkit-winning-a-coin-video-game-2069.wav');
 // hurt_sound = new Audio('./audio/Brrr-sound-effect.mp3');
@@ -36,10 +38,18 @@ function startGame() {
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard); 
+    // console.log('My charakter is', world.character);
 
+}
 
-    console.log('My charakter is', world.character);
+function setStopGameInterval(fn, time) {
+    let id = setInterval(fn, time);
+    intervalIds.push(id);
+}
 
+function stopGame(){
+    intervalIds.forEach(clearInterval);
+    intervalIds = [];
 }
 
 document.addEventListener("keydown", (e) => {

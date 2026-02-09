@@ -98,7 +98,7 @@ class Character extends MovableObject{
 
     
     animate(){
-    setInterval(() => {
+    setStopGameInterval(() => {
          if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
              this.moveRight();
              this.otherDirection = false;
@@ -113,7 +113,7 @@ class Character extends MovableObject{
         this.world.camera_x = -this.x + 100;
     }, 1000/60);
 
-    setInterval(() => {
+    setStopGameInterval(() => {
 
         this.updateIdleTime();
 
@@ -136,16 +136,8 @@ class Character extends MovableObject{
             }
     }, 90);
 }
-
-    // logHitbox() {
-    //     console.log("Hitbox:", {
-    //         left: this.x + this.hitboxOffsetX,
-    //         top: this.y + this.hitboxOffsetY,
-    //         width: this.hitboxWidth,
-    //         height: this.hitboxHeight
-    //     });
-    // }
     
+
     updateIdleTime() {
         if (this.x === this.lastX) {
             this.idleTime += 90;

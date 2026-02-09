@@ -14,7 +14,7 @@ class CollectableObjects extends MovableObject {
     }
 
     animate() {
-        setInterval (() => {
+        setStopGameInterval (() => {
             this.rotation += 0.02 * this.rotationDirection;
             if (this.rotation > 0.1 || this.rotation < - 0.1) {
                 this.rotationDirection *= -1;

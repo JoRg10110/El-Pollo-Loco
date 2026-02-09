@@ -24,13 +24,13 @@ class Chicken extends MovableObject {
     } 
 
     animate(){
-        setInterval(() => { 
+        setStopGameInterval(() => { 
             if (!this.isDead()) {
                 this.moveLeft();
             }
         }, 1000/60);
         
-        setInterval(() => {
+        setStopGameInterval(() => {
 
             if (this.isDead()){
                 this.handleDeath();

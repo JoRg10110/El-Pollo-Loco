@@ -43,7 +43,7 @@ class ThrowableObject extends MovableObject {
         this.applyGravity(); 
     }
     animate() {
-        setInterval( () => { 
+        setStopGameInterval( () => { 
             this.x += this.speedX;
             if (this.hasHitGround() && !this.isBreaking) {
                 this.splash();
@@ -51,7 +51,7 @@ class ThrowableObject extends MovableObject {
 
         }, 25);
 
-        setInterval(() => {
+        setStopGameInterval(() => {
             if (!this.isBreaking) {
                 this.playAnimation(this.IMAGES_ROTATE_BOTTLE);
             }
@@ -79,7 +79,7 @@ class ThrowableObject extends MovableObject {
 
             this.currentImage = 0;
 
-            let splashInterval = setInterval(() => {
+            let splashInterval = setStopGameInterval(() => {
                 this.playAnimation(this.IMAGES_SPLASH_BOTTLE);
 
                 if (this.currentImage >=this.IMAGES_SPLASH_BOTTLE.length) {

@@ -84,7 +84,7 @@ class Endboss extends MovableObject {
 
     animate() {
         // Intervall 1: Bewegung & Logik (Läuft schnell: ca. 60 Mal pro Sekunde)
-        setInterval(() => {
+        setStopGameInterval(() => {
             if (this.isDead()) return;
 
             // Prüfen: Wo ist der Character?
@@ -115,7 +115,7 @@ class Endboss extends MovableObject {
 
 
         // Intervall 2: Animation (Bilder tauschen) (Läuft langsam: 5 Mal pro Sekunde)
-        setInterval(() => { // 3. Richtig geschrieben: setInterval
+        setStopGameInterval(() => { // 3. Richtig geschrieben: setStopGameInterval
             
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);

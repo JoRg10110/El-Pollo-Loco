@@ -30,7 +30,7 @@ class World {
     }
 
     run() {
-        setInterval(() => {
+        setStopGameInterval(() => {
             // this.checkCollisions();
             this.checkThrowObjects();
             this.checkBottleCollection();

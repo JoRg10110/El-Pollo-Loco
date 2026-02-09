@@ -61,19 +61,12 @@ class DrawableObject {
                 this.height - this.hitboxBodyHeight
             );
             ctx.stroke();
-    
-            // if(this instanceof Character) {
-            //     this.logHitbox();
-            // }
-    
             }
     
     
         }
         }
 
-        
-    
     loadImages(arr){
         arr.forEach((path) => {
             let img = new Image();
