@@ -31,10 +31,20 @@ function startGame() {
     document.getElementById('start-screen').classList.add('d-none');
     document.getElementById('game-over-screen').classList.add('d-none');
     document.getElementById('all-btn').classList.remove('d-none');
-
     initLevel();
     init();
 }
+
+function restartGame() {
+    document.getElementById('game-over-screen').classList.add('d-none');
+    document.getElementById('start_btn').classList.add('d-none');
+    document.getElementById('canvas').classList.remove('d-none');
+    document.getElementById('all-btn').classList.remove('d-none');
+    initLevel();
+    init();
+    console.log('Game restarted');
+}
+
 
 function init() {
     canvas = document.getElementById('canvas');
