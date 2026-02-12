@@ -60,6 +60,10 @@ h1 {
     color: orange;
 }
 
+#game-over-screen img {
+    background-color: transparent !important;
+}
+
 .d-none {
     display: none !important;
 }
