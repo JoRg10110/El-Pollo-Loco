@@ -48,3 +48,15 @@ level1 = new Level(
     ]
 );
 }
+
+// let backgroundObjects = [];
+
+// for (let i = -1; i < 5; i++) {
+//     let x = i * 720;
+//     let layerType = (i % 2 === 0) ? '2' : '1';
+
+//     backgroundObjects.push(new BackgroundObject('img/5_background/layers/air.png', x));
+//     backgroundObjects.push(new BackgroundObject(`img/5_background/layers/3_third_layer/${layerType}.png`, x));
+//     backgroundObjects.push(new BackgroundObject(`img/5_background/layers/2_second_layer/${layerType}.png`, x));
+//     backgroundObjects.push(new BackgroundObject(`img/5_background/layers/1_first_layer/${layerType}.png`, x));
+// }
