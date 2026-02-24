@@ -45,7 +45,6 @@ function restartGame() {
     console.log('Game restarted');
 }
 
-
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard); 

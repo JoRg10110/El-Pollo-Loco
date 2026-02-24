@@ -85,83 +85,73 @@ class Endboss extends MovableObject {
   }
 
   animate() {
-    // Intervall 1: Bewegung & Logik (Läuft schnell: ca. 60 Mal pro Sekunde)
-    setStopGameInterval(() => {
-      if (this.isDead()) return;
-
-      // Prüfen: Wo ist der Character?
-      let distance =
-        this.world && this.world.character
-          ? Math.abs(this.x - this.world.character.x)
-          : 1000;
-
-      // 2. Hier setzen wir hadFirstContact auf true, wenn er nah genug ist (z.B. 500px)
-      if (distance < 400) {
-        this.hadFirstContact = true;
-        this.moveLeft();
-        this.otherDirection = false;
-
-        if (Math.random() < 0.01 && distance < 400) {
-          this.attackJump();
-        }
-      }
-      // Nur bewegen, keine Bilder tauschen!
-      else if (this.hadFirstContact && distance > 600) {
-        if (this.x < this.startX) {
-          this.x += this.speed * 3;
-          this.otherDirection = true;
-        } else {
-          this.hadFirstContact = false;
-          this.otherDirection = false;
-        }
-      }
-    }, 1000 / 60);
-
-    // Intervall 2: Animation (Bilder tauschen) (Läuft langsam: 5 Mal pro Sekunde)
-    setStopGameInterval(() => {
-      // 3. Richtig geschrieben: setStopGameInterval
-
-      if (this.isDead()) {
-        this.playAnimation(this.IMAGES_DEAD);
-
-        if (!this.isAlreadyDead) {
-          this.isAlreadyDead = true;
-
-          setTimeout(() => {
-            this.removed = true;
-          }, 300);
-        }
-      } else if (this.isHurt()) {
-        this.playAnimation(this.IMAGES_HURT);
-      } else if (this.hadFirstContact) {
-        // Entscheidung: Attacke oder Laufen?
-        let distance =
-          this.world && this.world.character
-            ? Math.abs(this.x - this.world.character.x)
-            : 1000;
-
-        if (distance < 100) {
-          this.playAnimation(this.IMAGES_ATTACK);
-        } else {
-          this.playAnimation(this.IMAGES_WALKING);
-        }
-      } else {
-        // Solange er den Character noch nie gesehen hat
-        this.playAnimation(this.IMAGES_ALERT);
-      }
-    }, 200);
+    setStopGameInterval(() => this.checkDistanceToCharacter(), 1000 / 60);
+    setStopGameInterval(() => this.playEndbossAnimation(), 200);
   }
 
+  checkDistanceToCharacter() {
+    if (this.isDead()) return;
+
+    let distance = this.getDistanceToCharakter();
+
+    if (distance < 400) this.handleAttack();
+    else if (this.hadFirstContact) this.handleReturn();
+  }
+
+  getDistanceToCharakter() {
+    if (!this.world || !this.world.character) return 1000;
+    return Math.abs(this.x - this.world.character.x);
+  }
+
+  handleAttack() {
+    this.hadFirstContact = true;
+    this.moveLeft();
+    this.otherDirection = false;
+
+    if (Math.random() < 0.01) this.attackJump();
+  }
+
+  handleReturn() {
+    if (this.x < this.startX) {
+      this.x += this.speed * 3;
+      this.otherDirection = true;
+    } else {
+      this.hadFirstContact = false;
+      this.otherDirection = false;
+    }
+  }
+
+  playEndbossAnimation() {
+    if (this.isDead()) this.playDeadAnimation();
+    else if (this.isHurt()) this.playAnimation(this.IMAGES_HURT);
+    else if (this.hadFirstContact) {
+      let distance = this.world && this.world.character ? Math.abs(this.x - this.world.character.x): 1000;
+
+      if (distance < 100) this.playAnimation(this.IMAGES_ATTACK);
+      else this.playAnimation(this.IMAGES_WALKING);
+    } else this.playAnimation(this.IMAGES_ALERT);
+  }
+
+  playDeadAnimation() {
+    this.playAnimation(this.IMAGES_DEAD);
+
+    if (!this.isAlreadyDead) {
+      this.isAlreadyDead = true;
+
+      setTimeout(() => {
+        this.removed = true;
+      }, 300);
+    }
+  }
+  
   jump() {
-    this.speedY = 30; // Die Kraft nach oben
+    this.speedY = 30;
   }
 
   attackJump() {
     if (!this.isAboveGround()) {
-      // Nur springen, wenn er auf dem Boden steht!
       this.jump();
 
-      // Bonus: Während des Sprungs wird er kurz schneller
       let oldSpeed = this.speed;
       this.speed = 4;
       setTimeout(() => {
