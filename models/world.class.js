@@ -55,11 +55,8 @@ class World {
   checkThrowObjects() {
     if (this.keyboard.D && !this.keyboard.throwing) {
       if (this.statusBarBottle.percentage > 0) {
-        let bottle = new ThrowableObject(
-          this.character.x + 100,
-          this.character.y + 100,
-          this
-        );
+        let bottle = new ThrowableObject
+        (this.character.x + 100, this.character.y + 100, this);
         this.throwableObject.push(bottle);
 
         this.statusBarBottle.setBottlePercentage(
@@ -79,7 +76,6 @@ class World {
       if (this.character.isColliding(bottle)) {
         this.level.collectableBottles.splice(index, 1);
         this.statusBarBottle.addBottle();
-        console.log("Bottle collected!");
       }
     });
   }
@@ -90,7 +86,6 @@ class World {
         this.level.collectableCoins.splice(index, 1);
         this.statusBarCoin.addCoin();
         coin_sound.play();
-        console.log("Coin collected!");
       }
     });
   }
@@ -111,12 +106,9 @@ class World {
     this.throwableObject.forEach((bottle) => {
       if (bottle.isColliding(endboss) && !bottle.isBreaking) {
         bottle.splash();
-        endboss.hit(100);
+        endboss.hit(20);
         this.statusBarEndboss.setEndbossPercentage(endboss.energy);
-
-        console.log("Endboss hit!");
       }
-      console.log(endboss.energy);
     });
   }
 
@@ -178,6 +170,15 @@ class World {
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // clear canvas
 
+    this.drawObjects();
+
+    let self = this;
+    requestAnimationFrame(function () {
+      self.draw();
+    });
+  }
+
+  drawObjects() {
     this.statusBarEndboss.updateFade();
 
     this.ctx.translate(this.camera_x, 0); // camera movement
@@ -201,14 +202,6 @@ class World {
     this.addToMap(this.statusBarCoin);
     this.addToMap(this.statusBarBottle);
     this.addToMap(this.statusBarEndboss);
-    // this.ctx.translate(this.camera_x, 0);
-
-    // this.ctx.translate(-this.camera_x, 0); // reset camera movement
-
-    let self = this;
-    requestAnimationFrame(function () {
-      self.draw();
-    });
   }
 
   addObjectsToMap(objects) {
