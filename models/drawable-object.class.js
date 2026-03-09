@@ -22,7 +22,7 @@ class DrawableObject {
     }
 
     drawFrame(ctx){
-        if (debugMode) {
+        if (this.debugMode) {
             
             if (this instanceof Character || 
                 this instanceof Chicken || 

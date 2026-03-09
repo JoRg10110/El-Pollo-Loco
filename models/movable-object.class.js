@@ -37,7 +37,6 @@ class MovableObject extends DrawableObject {
             return this.y < 150;
     }   
 
-
     isColliding(mo){
 
         // Eigene Hitbox
