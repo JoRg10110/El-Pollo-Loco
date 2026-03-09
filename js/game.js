@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let debugMode = false;
 let intervalIds = [];
 let i = 1;
 
