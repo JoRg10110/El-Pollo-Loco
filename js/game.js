@@ -37,7 +37,6 @@ function restartGame() {
     document.getElementById('all-btn').classList.remove('d-none');
     initLevel();
     init();
-    console.log('Game restarted');
 }
 
 function init() {
