@@ -25,7 +25,7 @@ h1 {
 
 #game-container {
     position: relative;
-    width: 100%;
+    /* width: 100%; */
     max-width: 720px;
     height: auto;
     aspect-ratio: 720 / 480;
@@ -97,7 +97,6 @@ canvas {
 }
 
 #hud {
-    display: none;
     flex-direction: column;
     justify-content: space-between;
     position: absolute;
@@ -107,6 +106,9 @@ canvas {
     right: 10px;
     pointer-events: none;
     
+}
+#hud:not(.d-none) {
+    display: flex;
 }
 .panel {
     display: flex;
@@ -140,6 +142,7 @@ canvas {
     margin: 0;
 }
 
+
 @media only screen and (max-width: 768px) {
     canvas {
         width: 100%;
@@ -156,6 +159,7 @@ canvas {
     #all-btn {
         display: none;
     }
+
     #title {
         display: none;
     }

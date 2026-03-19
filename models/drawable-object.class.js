@@ -70,10 +70,6 @@ class DrawableObject {
     }
   }
 
-//   outerFrameBlue() {
-    
-//   }
-
   loadImages(arr) {
     arr.forEach((path) => {
       let img = new Image();

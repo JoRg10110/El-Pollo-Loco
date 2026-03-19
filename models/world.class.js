@@ -158,7 +158,7 @@ class World {
         document.getElementById("game-over-screen").classList.remove("d-none");
         document.getElementById("canvas").classList.add("d-none");
         document.getElementById("all-btn").classList.add("d-none");
-        console.log("Game Over");
+        document.getElementById("hud").classList.add("d-none");
       }, 1500);
     }
   }

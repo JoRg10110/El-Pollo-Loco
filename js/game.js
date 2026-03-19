@@ -26,6 +26,9 @@ function startGame() {
     document.getElementById('start-screen').classList.add('d-none');
     document.getElementById('game-over-screen').classList.add('d-none');
     document.getElementById('all-btn').classList.remove('d-none');
+    if (window.innerWidth <= 768) {
+        document.getElementById('hud').classList.remove('d-none');
+    }
     initLevel();
     init();
 }
@@ -35,6 +38,9 @@ function restartGame() {
     document.getElementById('start_btn').classList.add('d-none');
     document.getElementById('canvas').classList.remove('d-none');
     document.getElementById('all-btn').classList.remove('d-none');
+    if (window.innerWidth <= 768) {
+        document.getElementById('hud').classList.remove('d-none');
+    }
     initLevel();
     init();
 }
@@ -42,8 +48,6 @@ function restartGame() {
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard); 
-    // console.log('My charakter is', world.character);
-
 }
 
 function setStopGameInterval(fn, time) {
