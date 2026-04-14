@@ -26,9 +26,11 @@ function startGame() {
     document.getElementById('start-screen').classList.add('d-none');
     document.getElementById('game-over-screen').classList.add('d-none');
     document.getElementById('all-btn').classList.remove('d-none');
-    if (window.innerWidth <= 768) {
-        document.getElementById('hud').classList.remove('d-none');
-    }
+    
+    checkHudVisibility();
+    // if (window.innerWidth <= 768) {
+    //     document.getElementById('hud').classList.remove('d-none');
+    // }
     initLevel();
     init();
 }
@@ -38,9 +40,11 @@ function restartGame() {
     document.getElementById('start_btn').classList.add('d-none');
     document.getElementById('canvas').classList.remove('d-none');
     document.getElementById('all-btn').classList.remove('d-none');
-    if (window.innerWidth <= 768) {
-        document.getElementById('hud').classList.remove('d-none');
-    }
+    
+    checkHudVisibility();
+    // if (window.innerWidth <= 768) {
+    //     document.getElementById('hud').classList.remove('d-none');
+    // }
     initLevel();
     init();
 }
@@ -59,3 +63,25 @@ function stopGame(){
     intervalIds.forEach(clearInterval);
     intervalIds = [];
 }
+
+function checkHudVisibility () {
+    let hud = document.getElementById('hud');
+    let allBtn = document.getElementById('all-btn');
+
+    if (window.innerWidth <= 768) {
+        hud.classList.remove('d-none');
+        allBtn.classList.add('d-none');
+    } else {
+        hud.classList.add('d-none');
+        allBtn.classList.remove('d-none');
+    }
+}
+
+window.addEventListener('resize', () => {
+    // Wir prüfen, ob der Start-Screen weg ist (also ob das Spiel läuft)
+    let isGameRunning = document.getElementById('start-screen').classList.contains('d-none');
+    
+    if (isGameRunning) {
+        checkHudVisibility();
+    }
+});
