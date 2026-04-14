@@ -28,9 +28,6 @@ function startGame() {
     document.getElementById('all-btn').classList.remove('d-none');
     
     checkHudVisibility();
-    // if (window.innerWidth <= 768) {
-    //     document.getElementById('hud').classList.remove('d-none');
-    // }
     initLevel();
     init();
 }
@@ -42,9 +39,6 @@ function restartGame() {
     document.getElementById('all-btn').classList.remove('d-none');
     
     checkHudVisibility();
-    // if (window.innerWidth <= 768) {
-    //     document.getElementById('hud').classList.remove('d-none');
-    // }
     initLevel();
     init();
 }

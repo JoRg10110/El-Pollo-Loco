@@ -4,7 +4,8 @@ class Level {
     backgroundObjects;
     collectableBottles;
     collectableCoins;
-    level_end_x = 1500;
+    // level_end_x = 1500;
+    level_end_x = 3000;
     endboss;
    
 

@@ -200,7 +200,7 @@ canvas {
     }
 }
 
-/* @media (orientation: portrait) {
+@media (orientation: portrait) {
     #rotate-device-overlay {
         display: flex !important;
     }
@@ -215,4 +215,4 @@ canvas {
     #rotate-device-overlay {
         display: none !important;
     }
-} */
+}
