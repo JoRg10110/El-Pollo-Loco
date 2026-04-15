@@ -3,7 +3,6 @@ let level1;
 function initLevel() {
 
     let enemies = [];
-
     for (let i = 0; i < 10; i++) {
         let xPos = 600 + Math.random() * 2400;
         enemies.push(new Chicken(xPos));
@@ -28,34 +27,18 @@ function initLevel() {
 
     }
 
+    let coins = [];
+    for (let i = 0; i < 12; i++) {
+        let x = 500 + Math.random() * 2300;
+        let y = 100 + Math.random() * 200;
+        coins.push(new CollectableCoin(x, y));
+    }
+
     level1 = new Level (
         enemies,
         [new Cloud()],
         backgroundObjects,
         bottles,
-        [
-            new CollectableCoin(500, 150),
-            new CollectableCoin(800, 150),
-            new CollectableCoin(1200, 150),
-            new CollectableCoin(1500, 150),
-            new CollectableCoin(1800, 150)
-        ]
-    // [
-    //     new Cloud()
-    // ],
-    // [
-    //     new CollectableBottle(),
-    //     new CollectableBottle(),
-    //     new CollectableBottle(),
-    //     new CollectableBottle(),
-    //     new CollectableBottle()
-    // ],
-    // [
-    //     new CollectableCoin(500, 150),
-    //     new CollectableCoin(800, 150),
-    //     new CollectableCoin(1200, 150),
-    //     new CollectableCoin(1500, 150),
-    //     new CollectableCoin(1800, 150)
-    // ]
+        coins
 );
 }
