@@ -6,7 +6,7 @@ let intervalIds = [];
 let i = 1;
 
 coin_sound = new Audio('./audio/mixkit-winning-a-coin-video-game-2069.wav');
-// hurt_sound = new Audio('./audio/Brrr-sound-effect.mp3');
+hurt_sound = new Audio('./audio/Brrr-sound-effect.mp3');
 endboss_warn = new Audio('./audio/Endboss_warn.mp3');
 chicken_sound = new Audio('./audio/chicken_sound.mp3');
 
@@ -72,7 +72,6 @@ function checkHudVisibility () {
 }
 
 window.addEventListener('resize', () => {
-    // Wir prüfen, ob der Start-Screen weg ist (also ob das Spiel läuft)
     let isGameRunning = document.getElementById('start-screen').classList.contains('d-none');
     
     if (isGameRunning) {

@@ -30,7 +30,6 @@ class World {
 
   run() {
     setStopGameInterval(() => {
-      // this.checkCollisions();
       this.checkThrowObjects();
       this.checkBottleCollection();
       this.checkCoinCollection();
@@ -55,8 +54,11 @@ class World {
   checkThrowObjects() {
     if (this.keyboard.D && !this.keyboard.throwing) {
       if (this.statusBarBottle.percentage > 0) {
-        let bottle = new ThrowableObject
-        (this.character.x + 100, this.character.y + 100, this);
+        let bottle = new ThrowableObject(
+          this.character.x + 100,
+          this.character.y + 100,
+          this
+        );
         this.throwableObject.push(bottle);
 
         this.statusBarBottle.setBottlePercentage(
@@ -119,12 +121,8 @@ class World {
 
     if (endboss.isBodyColliding(this.character)) {
       this.character.hit(20);
+      hurt_sound.play();
       this.statusBarHealth.setHealthPercentage(this.character.energy);
-
-      console.log(
-        "Autsch! Der Boss hat Pepe erwischt. Energie:",
-        this.character.energy
-      );
     }
   }
 
@@ -134,17 +132,13 @@ class World {
       if (enemy.isDead()) return;
 
       if (this.character.isColliding(enemy)) {
-        if (
-          this.character.isAboveGround() &&
-          this.character.y < enemy.y &&
-          this.character.speedY < 0
+        if (this.character.isAboveGround() && this.character.y < enemy.y && this.character.speedY < 0
         ) {
           enemy.hit(100);
           this.character.speedY = 20;
-          console.log("Huhn getroffen! Energie:", enemy.energy);
         } else {
           this.character.hit();
-          // hurt_sound.play();
+          hurt_sound.play();
           this.statusBarHealth.setHealthPercentage(this.character.energy);
         }
       }

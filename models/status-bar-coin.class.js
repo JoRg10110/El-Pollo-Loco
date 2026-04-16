@@ -41,7 +41,7 @@ class StatusBarCoin extends DrawableObject {
     }
 
     addCoin(){
-        let newPercentage = this.percentage + 20;
+        let newPercentage = this.percentage + 10;
         if (newPercentage > 100) {
             newPercentage = 100;
         }

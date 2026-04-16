@@ -5,8 +5,6 @@ class Endboss extends MovableObject {
   startX = 2960;
   speed = 0.5;
   hadFirstContact = false;
-  isBouncing = false;
-  bounceCounter = 0;
 
   hitboxOffsetX = 10;
   hitboxOffsetY = 70;
@@ -87,11 +85,7 @@ class Endboss extends MovableObject {
   }
 
   animate() {
-    setStopGameInterval(() => {
-      if (this.world && this.world.character) {
-      this.checkDistanceToCharacter();
-      }
-   }, 1000 / 60);
+    setStopGameInterval(() => this.checkDistanceToCharacter(), 1000 / 60);
     setStopGameInterval(() => this.playEndbossAnimation(), 200);
   }
 
@@ -111,30 +105,10 @@ class Endboss extends MovableObject {
 
   handleAttack() {
     this.hadFirstContact = true;
-    if (this.isBouncing){
-      this.executeBounceMovement();
-      return;
-    } 
+    this.moveLeft();
+    this.otherDirection = false;
 
-    if (this.isAboveGround()) return;
-
-    let distance = this.getDistanceToCharakter();
-
-    if (distance > 200) {
-      this.speed = 0.5;
-      this.moveLeft();
-      this.otherDirection = false;
-      console.log(distance,'Boss nähe');
-    } else {
-      this.speed = 0;
-      console.log('Boss steht vor Pepe und wartet auf Sprung');
-    }
-
-    if (distance < 220 && Math.random() < 0.02) {
-      console.log('Boss springt Pepe an!');
-      this.attackJump();
-      console.log(distance);
-    }
+    if (Math.random() < 0.01) this.attackJump();
   }
 
   handleReturn() {
@@ -174,47 +148,17 @@ class Endboss extends MovableObject {
     this.speedY = 30;
   }
 
-  attackJump () {
-    if (this.isAboveGround()) return;
-    console.log('Boss startet Sprung-Attacke');
-    this.jump();
-    // this.speed = 20;
+  attackJump() {
+    if (!this.isAboveGround()) {
+      this.jump();
 
-    let landingCheck = setInterval(() => {
-      if (this.isAboveGround()) {
-        this.x -= 8;
-      } else {
-        clearInterval(landingCheck);
-        this.isBouncing = true;
-        this.bounceCounter = 25;
-        console.log(('Boss gelandet - Bounce startet!'));
-      }
-    }, 1000 / 60);
-  }
-
-  executeBounceMovement() {
-    if (this.bounceCounter > 0) {
-        this.x += 10; // Er weicht nach RECHTS aus
-        this.bounceCounter--;
-        this.otherDirection = true; // Er dreht sich beim Weglaufen kurz um
-    } else {
-        this.isBouncing = false;
-        this.otherDirection = false;
-        console.log('Bounce beendet - Boss greift wieder an!');
+      let oldSpeed = this.speed;
+      this.speed = 4;
+      setTimeout(() => {
+        this.speed = oldSpeed;
+      }, 1000);
     }
-}
-
-  // attackJump() {
-  //   if (!this.isAboveGround()) {
-  //     this.jump();
-
-  //     let oldSpeed = this.speed;
-  //     this.speed = 4;
-  //     setTimeout(() => {
-  //       this.speed = oldSpeed;
-  //     }, 1000);
-  //   }
-  // }
+  }
 
   isAboveGround() {
     return this.y < 40;

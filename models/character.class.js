@@ -2,19 +2,16 @@ class Character extends MovableObject {
   height = 280;
   y = 150;
   speed = 10;
-  // x = 1150; // Nur zum Testen auf 1150 gesetzt
 
   hitboxOffsetX = 30;
   hitboxOffsetY = 120;
   hitboxWidth = 50;
   hitboxHeight = 130;
 
-  // Bewegunbgsstatus
-
   idleTime = 0;
   lastX = 0;
-  idleThreshold = 2000; // 2 Sekunden
-  longIdleThreshold = 10000; // 10 Sekunden
+  idleThreshold = 2000;
+  longIdleThreshold = 10000;
 
   IMAGES_WALKING = [
     "img/2_character_pepe/2_walk/W-21.png",
