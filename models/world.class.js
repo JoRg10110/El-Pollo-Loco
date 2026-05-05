@@ -37,6 +37,7 @@ class World {
       this.checkBottleHitEndboss();
       this.checkEndbossCollision();
       this.checkChickenCollision();
+      this.checkSmallChickenCollision();
       this.gameOver();
       this.cleanUp();
     }, 100);
@@ -138,11 +139,28 @@ class World {
           this.character.speedY = 20;
         } else {
           this.character.hit();
-          hurt_sound.play();
+          // hurt_sound.play();
           this.statusBarHealth.setHealthPercentage(this.character.energy);
         }
       }
     });
+  }
+
+  checkSmallChickenCollision() {
+      this.level.enemies.forEach((enemy) => {
+          if (!(enemy instanceof SmallChicken) || enemy.isDead()) return;
+          if (this.character.isColliding(enemy)) {
+              if (this.character.isAboveGround() && this.character.speedY < 0) {
+                  console.log('SmallChicken besiegt!');
+                  enemy.hit(100);
+                  this.character.speedY = 15;
+              } else {
+                  this.character.hit();
+                  // hurt_sound.play();
+                  this.statusBarHealth.setHealthPercentage(this.character.energy);
+              }
+          }
+      });
   }
 
   gameOver() {
@@ -184,7 +202,7 @@ class World {
     // Foreground objects
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
-    this.addObjectsToMap(this.level.smallChicken);
+    // this.addObjectsToMap(this.level.smallChicken);
     this.addObjectsToMap(this.throwableObject);
     this.addObjectsToMap(this.level.collectableBottles);
     this.addObjectsToMap(this.level.collectableCoins);

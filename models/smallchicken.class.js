@@ -1,7 +1,14 @@
 class SmallChicken extends MovableObject {
-    y = 365;
-    height = 50;
-    // widht = 50;
+    y = 360;
+    height = 60;
+    width = 50;
+
+    offset = {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0
+    };
 
     IMAGES_WALKING = [
         "img/3_enemies_chicken/chicken_small/1_walk/1_w.png",
@@ -19,13 +26,14 @@ class SmallChicken extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.isAlreadyDead = false;
         this.x = startX !== undefined ? startX : 700 + Math.random() * 2500;
-        this.speed = 0.15 + Math.random() * 0.5;
+        // this.speed = 0.15 + Math.random() * 0.5;
+        this.applyGravity();
         this.animate();
     }
     animate() {
         setStopGameInterval(() => {
             if (!this.isDead()) {
-                this.moveLeft();
+                this.handleJumping();
             }
         }, 1000 / 60);
 
@@ -38,12 +46,20 @@ class SmallChicken extends MovableObject {
         }, 100);
     }
 
+    handleJumping () {
+        if (!this.isAboveGround()) {
+            this.speedY = 15 + Math.random() * 10;
+        }
+    }
+
+    isAboveGround() {
+        return this.y < 360;
+    }
+
     handleDeath() {
         this.playAnimation(this.IMAGES_DEAD);
-
         if (!this.isAlreadyDead) {
             this.isAlreadyDead = true;
-
             setTimeout(() => {
                 this.removed = true;
             }, 300);

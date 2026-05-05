@@ -7,14 +7,11 @@ function initLevel() {
         let xPos = 600 + Math.random() * 2400;
         enemies.push(new Chicken(xPos));
     }
-    
-    enemies.push(new Endboss());
-
-    let smallChicken = [];
     for (let i = 0; i < 5; i++) {
         let xPos = 600 + Math.random() * 2400;
-        smallChicken.push(new SmallChicken(xPos));
+        enemies.push(new SmallChicken(xPos));
     }
+    enemies.push(new Endboss());
     
     let backgroundObjects = [];
     for (let i = -1; i < 6; i++) {
@@ -42,7 +39,6 @@ function initLevel() {
 
     level1 = new Level (
         enemies,
-        smallChicken,
         [new Cloud()],
         backgroundObjects,
         bottles,

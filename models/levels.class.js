@@ -1,6 +1,5 @@
 class Level {
   enemies;
-  smallChicken;
   clouds;
   backgroundObjects;
   collectableBottles;
@@ -10,14 +9,12 @@ class Level {
 
   constructor(
     enemies,
-    smallChicken,
     clouds,
     backgroundObjects,
     collectableBottles,
     collectableCoins
   ) {
     this.enemies = enemies;
-    this.smallChicken = smallChicken;
     this.clouds = clouds;
     this.backgroundObjects = backgroundObjects;
     this.collectableBottles = collectableBottles;
