@@ -184,6 +184,7 @@ class World {
     // Foreground objects
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.level.smallChicken);
     this.addObjectsToMap(this.throwableObject);
     this.addObjectsToMap(this.level.collectableBottles);
     this.addObjectsToMap(this.level.collectableCoins);
