@@ -140,7 +140,12 @@ class Character extends MovableObject {
   walkAnimations() {
     if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
       this.playAnimation(this.IMAGES_WALKING);
+      if (pepe_walk_sound.paused && !this.isAboveGround()) {
+        pepe_walk_sound.play();
+      } else if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
+        pepe_walk_sound.pause();
     }
+  }
   }
 
   updateIdleTime() {

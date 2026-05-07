@@ -1,0 +1,40 @@
+let isMuted = false;
+
+function toggleMute() {
+    isMuted = !isMuted;
+    allSounds.forEach(sound => {
+        sound.muted = isMuted;
+    });
+}
+
+const background_music = new Audio('audio/646873__audiomirage__willardz-saloon.wav');
+background_music.loop = true;
+background_music.volume = 0.5;
+
+const game_over_sound = new Audio('audio/797743__sergequadrado__western-loop.wav');
+game_over_sound.loop = true;
+game_over_sound.volume = 0.5;
+
+const coin_sound = new Audio('audio/mixkit-winning-a-coin-video-game-2069.wav');
+coin_sound.volume = 0.2;
+
+const bottle_sound = new Audio('audio/844511__sinny__item_equip_short.wav');
+bottle_sound.volume = 0.2;
+const bottle_splash_sound = new Audio('audio/universfield-glass-bottle-breaking-351297.mov');
+bottle_splash_sound.volume = 0.2;
+
+const hurt_sound = new Audio('audio/Brrr-sound-effect.mp3');
+hurt_sound.volume = 0.2;
+
+const pepe_walk_sound = new Audio("audio/107623__stintx__running01.wav");
+pepe_walk_sound.volume = 0.5;
+
+let allSounds = [
+    background_music,
+    game_over_sound,
+    coin_sound,
+    bottle_sound,
+    bottle_splash_sound,
+    hurt_sound,
+    pepe_walk_sound,
+]

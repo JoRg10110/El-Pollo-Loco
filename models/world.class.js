@@ -79,6 +79,7 @@ class World {
       if (this.character.isColliding(bottle)) {
         this.level.collectableBottles.splice(index, 1);
         this.statusBarBottle.addBottle();
+        bottle_sound.play();
       }
     });
   }
@@ -110,6 +111,7 @@ class World {
       if (bottle.isColliding(endboss) && !bottle.isBreaking) {
         bottle.splash();
         endboss.hit(20);
+        bottle_splash_sound.play();
         this.statusBarEndboss.setEndbossPercentage(endboss.energy);
       }
     });
@@ -139,7 +141,7 @@ class World {
           this.character.speedY = 20;
         } else {
           this.character.hit();
-          // hurt_sound.play();
+          hurt_sound.play();
           this.statusBarHealth.setHealthPercentage(this.character.energy);
         }
       }

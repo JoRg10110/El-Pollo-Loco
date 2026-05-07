@@ -3,11 +3,11 @@ let level1;
 function initLevel() {
 
     let enemies = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 7; i++) {
         let xPos = 600 + Math.random() * 2400;
         enemies.push(new Chicken(xPos));
     }
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 4; i++) {
         let xPos = 600 + Math.random() * 2400;
         enemies.push(new SmallChicken(xPos));
     }
