@@ -5,6 +5,13 @@ function toggleMute() {
     allSounds.forEach(sound => {
         sound.muted = isMuted;
     });
+
+    let muteIcon = document.getElementById('mute-icon');
+    if (isMuted) {
+        muteIcon.src = './img/btn/Mute.png';
+    } else {
+        muteIcon.src = './img/btn/Volume.png';
+    }
 }
 
 const background_music = new Audio('audio/646873__audiomirage__willardz-saloon.wav');

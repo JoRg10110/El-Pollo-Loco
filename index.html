@@ -56,35 +56,30 @@
             <!-- <img src="./img/9_intro_outro_screens/game_over/game over.png" height="480px" width="720px"> -->
             <p onclick="restartGame()" id="restart_btn">Restart Game</p>
         </div>
+
         
         <canvas id="canvas" width="720" height="480"></canvas>
-         <div id="hud" class="d-none"> 
-            <div class="panel flex-end zero">
-                <button class="panel-btn">
-                    <img src="./img/btn/Home.png" alt="">
-                </button>
-                <button class="panel-btn">
-                    <img src="./img/btn/Settings.png" alt="">
-                </button>
-                <button class="panel-btn" onclick="toggleMute()">
-                    <img src="./img/btn/Volume.png" alt="">
-                </button>
-            </div>
+        <div id="top-buttons" class="panel flex-end zero d-none">
+            <button class="panel-btn"><img src="./img/btn/Home.png" alt="">
+            </button>
+            <button class="panel-btn"><img src="./img/btn/Settings.png" alt="">
+            </button>
+            <button  class="panel-btn" onclick="toggleMute()"><img id="mute-icon" src="./img/btn/Volume.png" alt="">
+            </button>
+        </div>
+
+        <div id="hud" class="d-none"> 
             <div class="panel zero">
                 <div class="panel-wrapper">
-                    <button id="btn-Left" class="panel-btn">
-                        <img src="./img/btn/Left.png" alt="">
+                    <button id="btn-Left" class="panel-btn"><img src="./img/btn/Left.png" alt="">
                     </button>
-                    <button id="btn-Right" class="panel-btn">
-                        <img src="./img/btn/Right.png" alt="">
+                    <button id="btn-Right" class="panel-btn"><img src="./img/btn/Right.png" alt="">
                     </button>
                 </div>
                 <div class="panel-wrapper">
-                    <button id="btn-Up" class="panel-btn">
-                        <img src="./img/btn/Up.png" alt="">
+                    <button id="btn-Up" class="panel-btn"><img src="./img/btn/Up.png" alt="">
                     </button>
-                    <button id="btn-Throw" class="panel-btn">
-                        <img src="./img/btn/Throw.png" alt="">
+                    <button id="btn-Throw" class="panel-btn"><img src="./img/btn/Throw.png" alt="">
                     </button>
                 </div>
             </div>
@@ -98,6 +93,7 @@
             <img src="./img/btn/space.png" width="50px" height="50px"> Jump
             <img src="./img/btn/letter-d.png" width="50px" height="50px"> Throw
             <img src="./img/btn/letter-b.png" width="50px" height="50px"> Debug
+
         </div>
         <div id="btn">
             <button onclick="goFullScreen()"><img src="./img/btn/maximize.png" width="30px"></button>

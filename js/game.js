@@ -20,6 +20,7 @@ function startGame() {
     document.getElementById('start-screen').classList.add('d-none');
     document.getElementById('game-over-screen').classList.add('d-none');
     document.getElementById('all-btn').classList.remove('d-none');
+    document.getElementById('top-buttons').classList.remove('d-none');
     background_music.play();
     checkHudVisibility();
     initLevel();
@@ -31,6 +32,7 @@ function restartGame() {
     document.getElementById('start_btn').classList.add('d-none');
     document.getElementById('canvas').classList.remove('d-none');
     document.getElementById('all-btn').classList.remove('d-none');
+    document.getElementById('top-buttons').classList.add('d-none');
 
     checkHudVisibility();
     initLevel();
@@ -55,13 +57,15 @@ function stopGame(){
 function checkHudVisibility () {
     let hud = document.getElementById('hud');
     let allBtn = document.getElementById('all-btn');
-
+    let topButtons = document.getElementById('top-buttons');
     if (window.innerWidth <= 768) {
         hud.classList.remove('d-none');
         allBtn.classList.add('d-none');
+
     } else {
         hud.classList.add('d-none');
         allBtn.classList.remove('d-none');
+
     }
 }
 
