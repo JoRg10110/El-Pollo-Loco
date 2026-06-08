@@ -158,7 +158,7 @@ class World {
                   this.character.speedY = 15;
               } else {
                   this.character.hit();
-                  // hurt_sound.play();
+                  hurt_sound.play();
                   this.statusBarHealth.setHealthPercentage(this.character.energy);
               }
           }
