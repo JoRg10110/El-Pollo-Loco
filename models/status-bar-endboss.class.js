@@ -20,7 +20,7 @@ class StatusBarEndboss extends DrawableObject {
         this.loadImages(this.IMAGES_STATUS_BAR_END_BOSS);
         this.x = 300;
         this.y = 0;
-        this.width = 400;
+        this.width = 350;
         this.height = 100;
         this.setEndbossPercentage(100);
     }

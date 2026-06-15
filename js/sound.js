@@ -16,7 +16,7 @@ function toggleMute() {
 
 const background_music = new Audio('audio/646873__audiomirage__willardz-saloon.wav');
 background_music.loop = true;
-background_music.volume = 0.0;
+background_music.volume = 0.5;
 
 const game_over_sound = new Audio('audio/797743__sergequadrado__western-loop.wav');
 game_over_sound.loop = true;
