@@ -2,6 +2,7 @@ class Character extends MovableObject {
   height = 280;
   y = 150;
   speed = 10;
+  x = 2500;
 
   hitboxOffsetX = 30;
   hitboxOffsetY = 120;
@@ -88,6 +89,8 @@ class Character extends MovableObject {
     this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_IDLE);
     this.loadImages(this.IMAGES_LONGIDLE);
+    this.idleTime = 0;
+    this.lastX = 0;
 
     this.applyGravity();
     this.animate();
@@ -129,30 +132,39 @@ class Character extends MovableObject {
 
   playCharacter() {
     this.updateIdleTime();
-    if (this.isDead()) this.playAnimation(this.IMAGES_DEAD);
-    else if (this.isHurt()) this.playAnimation(this.IMAGES_HURT);
-    else if (this.isAboveGround()) this.playAnimation(this.IMAGES_JUMPING);
-    else if (this.longIdle()) this.playAnimation(this.IMAGES_LONGIDLE);
-    else if (this.idle()) this.playAnimation(this.IMAGES_IDLE);
-    else this.walkAnimations();
+    
+    if (this.isDead()) {
+        this.playDeadAnimation();
+    } else if (this.isHurt()) {
+        this.playAnimation(this.IMAGES_HURT);
+    } else if (this.isAboveGround()) {
+        this.playAnimation(this.IMAGES_JUMPING);
+    } else if (this.longIdle()) {
+        this.playAnimation(this.IMAGES_LONGIDLE);
+    } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+        this.walkAnimations();
+    } else {
+        this.playAnimation(this.IMAGES_IDLE); // Sofort atmen statt Schockstarre!
+    }
+  }
+
+  playDeadAnimation() {
+    this.playAnimation(this.IMAGES_DEAD);
   }
 
   walkAnimations() {
-    if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-      this.playAnimation(this.IMAGES_WALKING);
-      if (pepe_walk_sound.paused && !this.isAboveGround()) {
+    this.playAnimation(this.IMAGES_WALKING);
+    if (pepe_walk_sound.paused && !this.isAboveGround()) {
         pepe_walk_sound.play();
-      } else if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
-        pepe_walk_sound.pause();
     }
-  }
   }
 
   updateIdleTime() {
-    if (this.x === this.lastX) {
-      this.idleTime += 90;
-    } else {
+    if (this.world && (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.SPACE)) {
       this.idleTime = 0;
+      pepe_walk_sound.pause();
+    } else if (this.x === this.lastX) {
+      this.idleTime += 90;
     }
     this.lastX = this.x;
   }

@@ -68,8 +68,8 @@ canvas {
 #start_btn,
 #restart_btn {
     position: absolute;
-    top: 22%;
-    left: 7%;
+    top: 14%;
+    left: 5%;
     font-size: clamp(24px, 6.5cqw, 48px);
     font-family: 'Cowboy Outlaw', sans-serif;
     color: black;
@@ -234,7 +234,6 @@ canvas {
     }
 }
 
-/* Wenn das Touch-Gerät im Querformat ist, Overlay sicher ausblenden */
 @media (orientation: landscape) and (pointer: coarse) {
     #rotate-device-overlay {
         display: none !important;

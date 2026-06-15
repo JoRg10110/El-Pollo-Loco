@@ -24,6 +24,7 @@ class Endboss extends MovableObject {
     "img/4_enemie_boss_chicken/1_walk/G3.png",
     "img/4_enemie_boss_chicken/1_walk/G4.png",
   ];
+  
   IMAGES_ALERT = [
     "img/4_enemie_boss_chicken/2_alert/G5.png",
     "img/4_enemie_boss_chicken/2_alert/G6.png",
@@ -178,7 +179,6 @@ class Endboss extends MovableObject {
     if (this.isAboveGround()) return;
     console.log('Boss startet Sprung-Attacke');
     this.jump();
-    // this.speed = 20;
 
     let landingCheck = setInterval(() => {
       if (this.isAboveGround()) {
@@ -203,18 +203,6 @@ class Endboss extends MovableObject {
         console.log('Bounce beendet - Boss greift wieder an!');
     }
 }
-
-  // attackJump() {
-  //   if (!this.isAboveGround()) {
-  //     this.jump();
-
-  //     let oldSpeed = this.speed;
-  //     this.speed = 4;
-  //     setTimeout(() => {
-  //       this.speed = oldSpeed;
-  //     }, 1000);
-  //   }
-  // }
 
   isAboveGround() {
     return this.y < 40;

@@ -25,7 +25,7 @@ function initLevel() {
     }
 
     let bottles = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 10; i++) {
         bottles.push(new CollectableBottle(200 + Math.random() * 2400));
 
     }

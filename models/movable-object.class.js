@@ -13,6 +13,13 @@ class MovableObject extends DrawableObject {
     hitboxWidth = 0;
     hitboxHeight = 0;
 
+    constructor() {
+        super();
+        this.energy = 100;
+        this.lastHit = 0;
+        this.speedY = 0;
+    }
+
 
     applyGravity(){
         setStopGameInterval(() => {
@@ -46,8 +53,8 @@ class MovableObject extends DrawableObject {
         let myBottom = this.y + this.hitboxOffsetY + this.height - this.hitboxHeight;
 
         // Hitbox des anderen Objekts
-        let moLeft = mo.x + mo.hitboxOffsetY;
-        let moRight = mo.x + mo.hitboxOffsetY + mo.width - mo.hitboxWidth;
+        let moLeft = mo.x + mo.hitboxOffsetX;
+        let moRight = mo.x + mo.hitboxOffsetX + mo.width - mo.hitboxWidth;
         let moTop = mo.y + mo.hitboxOffsetY;
         let moBottom = mo.y + mo.hitboxOffsetY + mo.height - mo.hitboxHeight;
 

@@ -13,7 +13,6 @@ class DrawableObject {
   }
 
   draw(ctx) {
-    // ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     ctx.save();
     ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
     ctx.rotate(this.rotation);
@@ -28,47 +27,28 @@ class DrawableObject {
   }
 
   drawFrame(ctx) {
-    if (debugMode) {
-      if (
-        this instanceof Character ||
-        this instanceof Chicken ||
-        this instanceof SmallChicken ||
-        this instanceof Endboss ||
-        this instanceof ThrowableObject ||
-        this instanceof CollectableBottle ||
-        this instanceof CollectableCoin
-      ) {
-        // Äußerer Rahmen Blau
-        ctx.beginPath();
-        ctx.lineWidth = "1";
-        ctx.strokeStyle = "blue";
-        ctx.rect(this.x, this.y, this.width, this.height);
-        ctx.stroke();
-
-        // Innerer Rahmen Rot
-        ctx.beginPath();
-        ctx.lineWidth = "2";
-        ctx.strokeStyle = "red";
-        ctx.rect(
-          this.x + this.hitboxOffsetX,
-          this.y + this.hitboxOffsetY,
-          this.width - this.hitboxWidth,
-          this.height - this.hitboxHeight
-        );
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.lineWidth = "2";
-        ctx.strokeStyle = "green";
-        ctx.rect(
-          this.x + this.hitboxBodyOffsetX,
-          this.y + this.hitboxBodyOffsetY,
-          this.width - this.hitboxBodyWidth,
-          this.height - this.hitboxBodyHeight
-        );
-        ctx.stroke();
-      }
+    if (debugMode && this.isDebugEligible()) {
+      this.drawRect(ctx, this.x, this.y, this.width, this.height, "blue", 1);
+      this.drawRect(ctx, this.x + this.hitboxOffsetX, this.y + this.hitboxOffsetY, 
+        this.width - this.hitboxWidth, this.height - this.hitboxHeight, "red", 2);
+      this.drawRect(ctx, this.x + this.hitboxBodyOffsetX, this.y + this.hitboxBodyOffsetY, 
+        this.width - this.hitboxBodyWidth, this.height - this.hitboxBodyHeight, "green", 2);
     }
+  }
+
+  isDebugEligible() {
+    return this instanceof Character || this instanceof Chicken || 
+      this instanceof SmallChicken || this instanceof Endboss || 
+      this instanceof ThrowableObject || this instanceof CollectableBottle || 
+      this instanceof CollectableCoin;
+  }
+
+  drawRect(ctx, x, y, width, height, color, lineWidth) {
+    ctx.beginPath();
+    ctx.lineWidth = lineWidth;
+    ctx.strokeStyle = color;
+    ctx.rect(x, y, width, height);
+    ctx.stroke();
   }
 
   loadImages(arr) {

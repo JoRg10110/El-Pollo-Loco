@@ -32,7 +32,6 @@ function restartGame() {
     stopGame();
 
     document.getElementById('game-over-screen').classList.add('d-none');
-    // document.getElementById('start_btn').classList.add('d-none');
     document.getElementById('start-screen').classList.add('d-none');
     document.getElementById('canvas').classList.remove('d-none');
     document.getElementById('all-btn').classList.remove('d-none');
@@ -61,7 +60,6 @@ function stopGame(){
 function checkHudVisibility () {
     let hud = document.getElementById('hud');
     let allBtn = document.getElementById('all-btn');
-    let topButtons = document.getElementById('top-buttons');
     if (window.innerWidth <= 768) {
         hud.classList.remove('d-none');
         allBtn.classList.add('d-none');

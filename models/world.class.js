@@ -182,7 +182,7 @@ class World {
   }
 
   draw() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // clear canvas
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.drawObjects();
 
@@ -194,25 +194,15 @@ class World {
 
   drawObjects() {
     this.statusBarEndboss.updateFade();
-
-    this.ctx.translate(this.camera_x, 0); // camera movement
-
-    // Background objects
+    this.ctx.translate(this.camera_x, 0); 
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.clouds);
-
-    // Foreground objects
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
-    // this.addObjectsToMap(this.level.smallChicken);
     this.addObjectsToMap(this.throwableObject);
     this.addObjectsToMap(this.level.collectableBottles);
     this.addObjectsToMap(this.level.collectableCoins);
-
-    //Camera out
     this.ctx.translate(-this.camera_x, 0);
-
-    // HUD / StatusBars
     this.addToMap(this.statusBarHealth);
     this.addToMap(this.statusBarCoin);
     this.addToMap(this.statusBarBottle);
