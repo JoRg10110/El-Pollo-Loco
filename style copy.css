@@ -29,19 +29,9 @@ h1 {
     max-width: 720px;
     height: auto;
     aspect-ratio: 720 / 480;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-canvas {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
-
-#start-screen {
+/* #start-screen {
     position: absolute;
     top: 0;
     left: 0;
@@ -53,31 +43,20 @@ canvas {
     align-items: center;
     z-index: 10;
     background-color: rgba(0, 0, 0, 0.5);
-}
-
-.bg-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-}
+} */
 
 #start_btn,
 #restart_btn {
     position: absolute;
-    top: 22%;
-    left: 7%;
-    font-size: clamp(24px, 6.5cqw, 48px);
+    top: 100px;
+    left: 50px;
+    font-size: 48px;
     font-family: 'Cowboy Outlaw', sans-serif;
     color: black;
     border: none;
     cursor: pointer;
     margin: 0;
     text-shadow: 1px 1px 2px black;
-    z-index: 11;
 }
 
 #start_btn:hover,
@@ -93,13 +72,17 @@ canvas {
     display: none !important;
 }
 
+canvas {
+    /* background-color: black; */
+    display: block;
+}
+
 #all-btn {
     display: flex;
     flex-direction: row;
     width: 720px;
     justify-content: space-between;
 }
-
 #btn {
     display: flex;
     flex-direction: row;
@@ -136,7 +119,6 @@ canvas {
     pointer-events: none;
     
 }
-
 #hud:not(.d-none) {
     display: none !important;
 }
@@ -147,7 +129,6 @@ canvas {
     width: 100%;
     pointer-events: auto;
 }
-
 .panel-wrapper {
     display: flex;
     gap: 2vw;
@@ -181,15 +162,29 @@ canvas {
     margin: 0;
 }
 
+/* HANDY DREHEN*/
+
+/* Das Overlay-Design */
 #rotate-device-overlay {
-    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Fast schwarzer Hintergrund */
+    z-index: 999; /* Ganz nach vorne bringen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
 }
 
 .overlay-content img {
-    width: 200px;
+    width: 200px; /* Ein Icon eines rotierenden Handys */
     margin-bottom: 20px;
     filter: invert(1);
-    animation: rotate 2s infinite ease-in-out;
+    animation: rotate 2s infinite ease-in-out; /* Eine kleine Animation */
 }
 
 @keyframes rotate {
@@ -213,29 +208,24 @@ canvas {
     }
 }
 
-@media (orientation: portrait) and (pointer: coarse) {
-    #rotate-device-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.9);
-        z-index: 999;
-        display: flex !important;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        text-align: center;
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
     }
+}
+
+@media (orientation: portrait) {
+    #rotate-device-overlay {
+        display: flex !important;
+    }
+    
 
     #game-container, #title, h1, #all-btn {
         display: none !important;
     }
 }
 
-/* Wenn das Touch-Gerät im Querformat ist, Overlay sicher ausblenden */
-@media (orientation: landscape) and (pointer: coarse) {
+@media (orientation: landscape) {
     #rotate-device-overlay {
         display: none !important;
     }
