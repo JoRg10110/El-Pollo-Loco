@@ -1,18 +1,20 @@
-let isMuted = false;
+let isMuted = localStorage.getItem('gameMuted') === 'true';
 
-function toggleMute() {
-    isMuted = !isMuted;
-    allSounds.forEach(sound => {
-        sound.muted = isMuted;
-    });
 
-    let muteIcon = document.getElementById('mute-icon');
-    if (isMuted) {
-        muteIcon.src = './img/btn/Mute.png';
-    } else {
-        muteIcon.src = './img/btn/Volume.png';
-    }
-}
+
+// function toggleMute() {
+//     isMuted = !isMuted;
+//     allSounds.forEach(sound => {
+//         sound.muted = isMuted;
+//     });
+
+//     let muteIcon = document.getElementById('mute-icon');
+//     if (isMuted) {
+//         muteIcon.src = './img/btn/Mute.png';
+//     } else {
+//         muteIcon.src = './img/btn/Volume.png';
+//     }
+// }
 
 const background_music = new Audio('audio/646873__audiomirage__willardz-saloon.wav');
 background_music.loop = true;
@@ -45,3 +47,35 @@ let allSounds = [
     hurt_sound,
     pepe_walk_sound,
 ]
+
+function initAudioState() {
+    applyMuteState();
+
+    let savedVolume = localStorage.getItem('gameVolume')  || 0.5;
+    changeVolume(savedVolume);
+}
+
+function toggleMute() {
+    isMuted = !isMuted;
+    localStorage.setItem('gameMuted', isMuted);
+    applyMuteState();
+}
+
+function applyMuteState() {
+    let muteIcon = document.getElementById('mute-icon');
+
+    allSounds.forEach(sound => {
+        if (sound) sound.muted = isMuted;
+    });
+
+    if (muteIcon) {
+        muteIcon.src = isMuted ? "./img/btn/Mute.png" : "./img/btn/Volume.png";
+    }
+}
+
+function changeVolume(volumeValue) {
+    localStorage.setItem('gameVolume', volumeValue);
+    allSounds.forEach(sound => {
+        if (sound) sound.volume = volumeValue;
+    });
+}

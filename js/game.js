@@ -17,6 +17,8 @@ function goFullScreen() {
 }
 
 function startGame() {
+    initAudioState();
+    
     document.getElementById('start-screen').classList.add('d-none');
     document.getElementById('game-over-screen').classList.add('d-none');
     document.getElementById('all-btn').classList.remove('d-none');
@@ -40,6 +42,23 @@ function restartGame() {
     checkHudVisibility();
     initLevel();
     init();
+}
+
+function goHome(){
+    stopGame();
+
+    // Screens umschalten
+    document.getElementById('start-screen').classList.remove('d-none');
+    document.getElementById('game-over-screen').classList.add('d-none');
+    
+    // HUD und In-Game-Buttons verstecken
+    document.getElementById('hud').classList.add('d-none');
+    document.getElementById('top-buttons').classList.add('d-none');
+    document.getElementById('all-btn').classList.add('d-none');
+    
+    // Musik stoppen oder zurücksetzen, falls gewünscht
+    background_music.pause();
+    background_music.currentTime = 0;
 }
 
 function init() {

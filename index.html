@@ -46,11 +46,13 @@
             <p>Bitte drehe dein Gerät ins Querformat, um zu spielen!</p>
         </div>
     </div>
+
     <div id="game-container">
         <div id="start-screen">
             <img class="bg-img" src="./img/9_intro_outro_screens/start/startscreen_1.png">
             <p onclick="startGame()" id="start_btn">Spiel Starten</p>
         </div>
+        
         <div id="game-over-screen" class="d-none">
             <!-- <img src="./img/9_intro_outro_screens/game_over/game over.png" height="480px" width="720px"> -->
             <p onclick="restartGame()" id="restart_btn">Restart Game</p>
@@ -58,8 +60,9 @@
 
         
         <canvas id="canvas" width="720" height="480"></canvas>
+
         <div id="top-buttons" class="panel flex-end zero d-none">
-            <button class="panel-btn"><img src="./img/btn/Home.png" alt="">
+            <button class="panel-btn" onclick="goHome()" ><img src="./img/btn/Home.png" alt="">
             </button>
             <button class="panel-btn"><img src="./img/btn/Settings.png" alt="">
             </button>
