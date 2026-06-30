@@ -196,6 +196,52 @@ canvas {
     animation: rotate 2s infinite ease-in-out;
 }
 
+#settings-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    color: white;
+}
+
+.settings-content {
+    background: #4a3319;
+    padding: 20px;
+    border: 3px solid black;
+    border-radius: 10px;
+    text-align: center;
+    width: 60%;
+}
+
+.volume-control {
+    margin: 20px 0;
+}
+
+#volume-slider {
+    width: 100%;
+    accent-color: orange;
+}
+
+.close-btn {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-family: 'Cowboy Outlaw', sans-serif;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background-color: orange;
+    color: black;
+}
+
 @keyframes rotate {
     0% { transform: rotate(50deg); }
     50% { transform: rotate(-50deg); }

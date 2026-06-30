@@ -143,7 +143,7 @@ class Character extends MovableObject {
     } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
         this.walkAnimations();
     } else {
-        this.playAnimation(this.IMAGES_IDLE); // Sofort atmen statt Schockstarre!
+        this.playAnimation(this.IMAGES_IDLE);
     }
   }
 

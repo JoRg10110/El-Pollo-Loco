@@ -1,21 +1,5 @@
 let isMuted = localStorage.getItem('gameMuted') === 'true';
 
-
-
-// function toggleMute() {
-//     isMuted = !isMuted;
-//     allSounds.forEach(sound => {
-//         sound.muted = isMuted;
-//     });
-
-//     let muteIcon = document.getElementById('mute-icon');
-//     if (isMuted) {
-//         muteIcon.src = './img/btn/Mute.png';
-//     } else {
-//         muteIcon.src = './img/btn/Volume.png';
-//     }
-// }
-
 const background_music = new Audio('audio/646873__audiomirage__willardz-saloon.wav');
 background_music.loop = true;
 background_music.volume = 0.5;
@@ -25,15 +9,15 @@ game_over_sound.loop = true;
 game_over_sound.volume = 0.5;
 
 const coin_sound = new Audio('audio/mixkit-winning-a-coin-video-game-2069.wav');
-coin_sound.volume = 0.2;
+coin_sound.volume = 0.5;
 
 const bottle_sound = new Audio('audio/844511__sinny__item_equip_short.wav');
-bottle_sound.volume = 0.2;
+bottle_sound.volume = 0.5;
 const bottle_splash_sound = new Audio('audio/universfield-glass-bottle-breaking-351297.mov');
-bottle_splash_sound.volume = 0.2;
+bottle_splash_sound.volume = 0.5;
 
 const hurt_sound = new Audio('audio/Brrr-sound-effect.mp3');
-hurt_sound.volume = 0.2;
+hurt_sound.volume = 0.5;
 
 const pepe_walk_sound = new Audio("audio/107623__stintx__running01.wav");
 pepe_walk_sound.volume = 0.5;
@@ -70,6 +54,23 @@ function applyMuteState() {
 
     if (muteIcon) {
         muteIcon.src = isMuted ? "./img/btn/Mute.png" : "./img/btn/Volume.png";
+    }
+}
+
+function changeVolume(volumeValue) {
+    localStorage.setItem('gameVolume', volumeValue);
+    allSounds.forEach(sound => {
+        if (sound) sound.volume = volumeValue;
+    });
+}
+
+function toggleSettingsOverlay() {
+    let overlay = document.getElementById('settings-overlay');
+    overlay.classList.toggle('d-none');
+    
+    if (!overlay.classList.contains('d-none')) {
+        let savedVolume = localStorage.getItem('gameVolume') || 0.5;
+        document.getElementById('volume-slider').value = savedVolume;
     }
 }
 

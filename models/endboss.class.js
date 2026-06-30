@@ -14,9 +14,9 @@ class Endboss extends MovableObject {
   hitboxHeight = this.height - 120;
 
   hitboxBodyOffsetX = 70;
-  hitboxBodyOffsetY = 320; // Startet unter dem Kopf
+  hitboxBodyOffsetY = 320;
   hitboxBodyWidth = this.width - 150;
-  hitboxBodyHeight = this.height - 50; // Geht bis zum Boden
+  hitboxBodyHeight = this.height - 50;
 
   IMAGES_WALKING = [
     "img/4_enemie_boss_chicken/1_walk/G1.png",
@@ -194,9 +194,9 @@ class Endboss extends MovableObject {
 
   executeBounceMovement() {
     if (this.bounceCounter > 0) {
-        this.x += 10; // Er weicht nach RECHTS aus
+        this.x += 10;
         this.bounceCounter--;
-        this.otherDirection = true; // Er dreht sich beim Weglaufen kurz um
+        this.otherDirection = true; 
     } else {
         this.isBouncing = false;
         this.otherDirection = false;

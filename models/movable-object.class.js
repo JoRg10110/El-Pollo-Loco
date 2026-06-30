@@ -46,13 +46,11 @@ class MovableObject extends DrawableObject {
 
     isColliding(mo){
 
-        // Eigene Hitbox
         let myLeft = this.x + this.hitboxOffsetX;
         let myRight = this.x + this.hitboxOffsetX + this.width - this.hitboxWidth;
         let myTop = this.y + this.hitboxOffsetY;
         let myBottom = this.y + this.hitboxOffsetY + this.height - this.hitboxHeight;
 
-        // Hitbox des anderen Objekts
         let moLeft = mo.x + mo.hitboxOffsetX;
         let moRight = mo.x + mo.hitboxOffsetX + mo.width - mo.hitboxWidth;
         let moTop = mo.y + mo.hitboxOffsetY;
@@ -79,8 +77,8 @@ class MovableObject extends DrawableObject {
     }
     
     isHurt() { 
-        let timepassed = new Date().getTime() - this.lastHit; // difference in ms
-        timepassed = timepassed / 1000; // difference in s
+        let timepassed = new Date().getTime() - this.lastHit;
+        timepassed = timepassed / 1000;
         return timepassed < 0.5;
     }
     
