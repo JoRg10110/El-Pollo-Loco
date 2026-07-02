@@ -1,16 +1,45 @@
+/**
+ * Represents the main game world handling rendering, logic loops, physics, and object states.
+ */
 class World {
+  /** @type {Character} The main playable character instance. */
   character = new Character();
+  
+  /** @type {Level} The active level data structure. */
   level = level1;
+  
+  /** @type {HTMLCanvasElement} The canvas HTML element used for rendering. */
   canvas;
+  
+  /** @type {CanvasRenderingContext2D} The 2D rendering context of the canvas. */
   ctx;
+  
+  /** @type {Keyboard} The input listener reference for game controls. */
   keyboard;
+  
+  /** @type {number} The current horizontal shift of the camera view. */
   camera_x = 0;
+  
+  /** @type {StatusBarHealth} The status bar tracking character health. */
   statusBarHealth = new StatusBarHealth();
+  
+  /** @type {StatusBarCoin} The status bar tracking collected coins. */
   statusBarCoin = new StatusBarCoin();
+  
+  /** @type {StatusBarBottle} The status bar tracking available throw weapons. */
   statusBarBottle = new StatusBarBottle();
+  
+  /** @type {StatusBarEndboss} The status bar tracking end boss health. */
   statusBarEndboss = new StatusBarEndboss();
+  
+  /** @type {ThrowableObject[]} Array containing active thrown bottle instances. */
   throwableObject = [];
 
+  /**
+   * Creates an instance of the game world.
+   * @param {HTMLCanvasElement} canvas - The canvas element.
+   * @param {Keyboard} keyboard - The keyboard listener object.
+   */
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
@@ -20,6 +49,9 @@ class World {
     this.run();
   }
 
+  /**
+   * Links the world instance context to game objects like the character and the end boss.
+   */
   setWorld() {
     this.character.world = this;
     let endboss = this.level.enemies.find((e) => e instanceof Endboss);
@@ -28,6 +60,9 @@ class World {
     }
   }
 
+  /**
+   * Starts the core calculation loop for game collision and progression tracking.
+   */
   run() {
     setStopGameInterval(() => {
       this.checkThrowObjects();
@@ -43,6 +78,9 @@ class World {
     }, 100);
   }
 
+  /**
+   * Basic dynamic check for standard collisions between enemies and the main character.
+   */
   checkCollisions() {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
@@ -52,6 +90,9 @@ class World {
     });
   }
 
+  /**
+   * Handles character throw inputs, managing ammunition costs and input locking flags.
+   */
   checkThrowObjects() {
     if (this.keyboard.D && !this.keyboard.throwing) {
       if (this.statusBarBottle.percentage > 0) {
@@ -74,6 +115,9 @@ class World {
     }
   }
 
+  /**
+   * Iterates through collectable bottles, updating tracking bars and playbacks on contact.
+   */
   checkBottleCollection() {
     this.level.collectableBottles.forEach((bottle, index) => {
       if (this.character.isColliding(bottle)) {
@@ -84,6 +128,9 @@ class World {
     });
   }
 
+  /**
+   * Iterates through collectable coins, updating status views and audios upon interaction.
+   */
   checkCoinCollection() {
     this.level.collectableCoins.forEach((coin, index) => {
       if (this.character.isColliding(coin)) {
@@ -94,6 +141,9 @@ class World {
     });
   }
 
+  /**
+   * Evaluates character proximity to the end boss position to trigger the boss UI fade in.
+   */
   checkEndbossVisibility() {
     let endboss = this.level.endboss;
     let sb = this.statusBarEndboss;
@@ -103,6 +153,9 @@ class World {
     }
   }
 
+  /**
+   * Evaluates if active thrown items intersect the boss hitbox to register damage metrics.
+   */
   checkBottleHitEndboss() {
     let endboss = this.level.enemies.find((e) => e instanceof Endboss);
     if (!endboss) return;
@@ -117,6 +170,9 @@ class World {
     });
   }
 
+  /**
+   * Checks core spatial overlap scenarios with the main final boss to apply high user damage.
+   */
   checkEndbossCollision() {
     let endboss = this.level.enemies.find((e) => e instanceof Endboss);
 
@@ -129,6 +185,9 @@ class World {
     }
   }
 
+  /**
+   * Coordinates jump stamping interactions or walk damage outcomes for standard chicken types.
+   */
   checkChickenCollision() {
     this.level.enemies.forEach((enemy) => {
       if (!(enemy instanceof Chicken)) return;
@@ -148,6 +207,9 @@ class World {
     });
   }
 
+  /**
+   * Monitors impact outcomes on small chicken units to filter stomp logic or penalty routines.
+   */
   checkSmallChickenCollision() {
       this.level.enemies.forEach((enemy) => {
           if (!(enemy instanceof SmallChicken) || enemy.isDead()) return;
@@ -165,6 +227,9 @@ class World {
       });
   }
 
+  /**
+   * Checks health levels to safely coordinate game termination and overlay transitions.
+   */
   gameOver() {
     if (this.character.isDead() || this.level.endboss.isDead()) {
       setTimeout(() => {
@@ -177,10 +242,16 @@ class World {
     }
   }
 
+  /**
+   * Purges flags and deleted object resources safely out of the primary level tracking array.
+   */
   cleanUp() {
     this.level.enemies = this.level.enemies.filter((enemy) => !enemy.removed);
   }
 
+  /**
+   * The infinite animation loop clearing the frame layout and requesting updates.
+   */
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -192,6 +263,9 @@ class World {
     });
   }
 
+  /**
+   * Orders object sequences onto maps, controlling relative perspective matrix transformations.
+   */
   drawObjects() {
     this.statusBarEndboss.updateFade();
     this.ctx.translate(this.camera_x, 0); 
@@ -209,12 +283,20 @@ class World {
     this.addToMap(this.statusBarEndboss);
   }
 
+  /**
+   * Iterates collections to push grouped entities sequentially to the drawing engine pipeline.
+   * @param {DrawableObject[]} objects - Collection arrays of standard scene models.
+   */
   addObjectsToMap(objects) {
     objects.forEach((o) => {
       this.addToMap(o);
     });
   }
 
+  /**
+   * Registers a unique asset context model layout map drawing, validating alignment direction.
+   * @param {MovableObject|DrawableObject} mo - The targeted rendering model asset instance.
+   */
   addToMap(mo) {
     if (mo.otherDirection) {
       this.flipImage(mo);
@@ -228,6 +310,10 @@ class World {
     }
   }
 
+  /**
+   * Flips image context rendering matrix horizontal orientation settings parameters.
+   * @param {MovableObject|DrawableObject} mo - The current target element.
+   */
   flipImage(mo) {
     this.ctx.save();
     this.ctx.translate(mo.width, 0);
@@ -235,6 +321,10 @@ class World {
     mo.x = mo.x * -1;
   }
 
+  /**
+   * Restores initial matrix states safely from horizontal rendering transformation procedures.
+   * @param {MovableObject|DrawableObject} mo - The current target element.
+   */
   flipImageBack(mo) {
     mo.x = mo.x * -1;
     this.ctx.restore();

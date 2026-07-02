@@ -1,11 +1,25 @@
+/** @type {HTMLCanvasElement|undefined} Global reference link directly targeting the primary canvas drawing node. */
 let canvas;
+
+/** @type {World|undefined} Global instance manager driving the complete active gameplay environment. */
 let world;
+
+/** @type {Keyboard} Global instance mapping active system key inputs and hardware registers. */
 let keyboard = new Keyboard();
+
+/** @type {boolean} Global toggle controller turning wireframe boundary bounding wrappers on or off. */
 let debugMode = false;
+
+/** @type {number[]} Matrix storage collecting all active procedural loop interval reference markers. */
 let intervalIds = [];
+
+/** @type {number} Unused general purpose tracking iterator. */
 let i = 1;
 
 
+/**
+ * Requests the domestic browser engine to elevate the canvas viewport element into standard native fullscreen layout mode.
+ */
 function goFullScreen() {
     let canvas = document.getElementById("canvas");
     if (canvas.requestFullscreen)
@@ -16,6 +30,9 @@ function goFullScreen() {
         canvas.mozRequestFullScreen();
 }
 
+/**
+ * Sweeps main menu states, triggers initial level factory loads, binds core engine components, and launches game audio.
+ */
 function startGame() {
     initAudioState();
 
@@ -30,6 +47,9 @@ function startGame() {
     init();
 }
 
+/**
+ * Terminates all running game loop executions, resets scene models from factories, and triggers clean container reboots.
+ */
 function restartGame() {
     stopGame();
 
@@ -44,6 +64,9 @@ function restartGame() {
     init();
 }
 
+/**
+ * Directs viewport navigation flows back toward the master start screens, stopping physics tracks and freezing sounds.
+ */
 function goHome(){
     stopGame();
 
@@ -58,35 +81,50 @@ function goHome(){
     background_music.currentTime = 0;
 }
 
+/**
+ * Selects the domestic graphic viewport canvas context node and instantiates the main World supervisor thread.
+ */
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard); 
 }
 
+/**
+ * Registers an execution script loop to global tracking systems, allowing safely managed bulk termination runs later.
+ * @param {Function} fn - The callback script sequence function designed to execute iteratively.
+ * @param {number} time - Interval timeout cycle frequency rate measured in milliseconds.
+ */
 function setStopGameInterval(fn, time) {
     let id = setInterval(fn, time);
     intervalIds.push(id);
 }
 
+/**
+ * Loops across the complete registry list of active interval reference IDs, forcing clean engine cycle stops.
+ */
 function stopGame(){
     intervalIds.forEach(clearInterval);
     intervalIds = [];
 }
 
+/**
+ * Evaluates active browser viewport display width limits to dynamically display mobile or desktop touch button layouts.
+ */
 function checkHudVisibility () {
     let hud = document.getElementById('hud');
     let allBtn = document.getElementById('all-btn');
     if (window.innerWidth <= 768) {
         hud.classList.remove('d-none');
         allBtn.classList.add('d-none');
-
     } else {
         hud.classList.add('d-none');
         allBtn.classList.remove('d-none');
-
     }
 }
 
+/**
+ * Listens directly to domestic window mutation actions to automatically reflow overlay elements if a match context is active.
+ */
 window.addEventListener('resize', () => {
     let isGameRunning = document.getElementById('start-screen').classList.contains('d-none');
     

@@ -1,7 +1,15 @@
+/**
+ * Represents a projectile object (salsa bottle) that can be thrown by the character.
+ * @extends MovableObject
+ */
 class ThrowableObject extends MovableObject {
+  /** @type {number} The horizontal speed of the thrown object. */
   speedX = 10;
+  
+  /** @type {number} The Y-coordinate threshold representing the ground level for this object. */
   groundY = 380;
 
+  /** @type {string[]} Array containing paths to the rotating bottle animation frames. */
   IMAGES_ROTATE_BOTTLE = [
     "img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png",
     "img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png",
@@ -9,6 +17,7 @@ class ThrowableObject extends MovableObject {
     "img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png",
   ];
 
+  /** @type {string[]} Array containing paths to the bottle splash animation frames. */
   IMAGES_SPLASH_BOTTLE = [
     "img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png",
     "img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png",
@@ -18,6 +27,12 @@ class ThrowableObject extends MovableObject {
     "img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png",
   ];
 
+  /**
+   * Creates an instance of a throwable object.
+   * @param {number} x - The initial X-coordinate layout position.
+   * @param {number} y - The initial Y-coordinate layout position.
+   * @param {World} world - Reference context to the game world environment.
+   */
   constructor(x, y, world) {
     super();
     this.world = world;
@@ -37,10 +52,17 @@ class ThrowableObject extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Initiates the throwing physics sequence by setting vertical speed and applying gravity.
+   */
   throw() {
     this.speedY = 30;
     this.applyGravity();
   }
+  
+  /**
+   * Coordinates movement and rotation intervals for standard flying tracking routines.
+   */
   animate() {
     setStopGameInterval(() => {
       this.x += this.speedX;
@@ -56,6 +78,10 @@ class ThrowableObject extends MovableObject {
     }, 100);
   }
 
+  /**
+   * Checks if the bottle coordinate layer intersects past the defined ground limit.
+   * @returns {boolean} True if the object collided with the ground, otherwise false.
+   */
   hasHitGround() {
     if (this.y > this.groundY) {
       this.y = this.groundY;
@@ -67,6 +93,9 @@ class ThrowableObject extends MovableObject {
     return false;
   }
 
+  /**
+   * Triggers the destruction sequence, rendering asset breaking arrays and cleaning array references.
+   */
   splash() {
     if (this.isBreaking) return;
 
