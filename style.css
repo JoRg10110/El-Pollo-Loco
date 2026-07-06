@@ -72,12 +72,18 @@ canvas {
     left: 5%;
     font-size: clamp(24px, 6.5cqw, 48px);
     font-family: 'Cowboy Outlaw', sans-serif;
-    color: black;
+    color: rgb(255, 255, 255);
     border: none;
     cursor: pointer;
     margin: 0;
     text-shadow: 1px 1px 2px black;
     z-index: 11;
+}
+
+#restart_btn {
+    top: 80%;
+    left: 33%;
+
 }
 
 #start_btn:hover,
@@ -250,7 +256,8 @@ footer {
     gap: 20px;
 }
 footer div a {
-    color: white;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
     text-decoration: none;
 }
 footer a:hover {
@@ -325,8 +332,7 @@ footer a:hover {
 
 @media only screen and (max-width: 768px) {
     h1 {
-        font-size: 50px;
-        margin-top: 10px;
+        display: none;
     }
 
     #game-container {
@@ -347,6 +353,10 @@ footer a:hover {
     #all-btn {
         display: none !important;
     }
+
+    /* footer {
+        display: none !important;
+    } */
 }
 
 @media (orientation: portrait) and (pointer: coarse) {
@@ -359,7 +369,7 @@ footer a:hover {
         justify-content: center; align-items: center;
         color: white; text-align: center;
     }
-    #game-container, #title, h1, #all-btn, footer {
+    #game-container, #title, h1, #all-btn {
         display: none !important;
     }
 }
@@ -419,7 +429,7 @@ footer a:hover {
         display: none !important;
     }
 
-    footer {
+    /* footer {
         display: none !important;
-    }
+    } */
 }
