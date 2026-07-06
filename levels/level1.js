@@ -33,7 +33,7 @@ function initLevel() {
 
     /** @type {CollectableBottle[]} Temporary tracking collection storing pickable ammunition positions. */
     let bottles = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 15; i++) {
         bottles.push(new CollectableBottle(200 + Math.random() * 2400));
     }
 

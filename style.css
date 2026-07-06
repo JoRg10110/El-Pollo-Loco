@@ -14,7 +14,15 @@ body {
     font-family: 'Cowboy Outlaw', sans-serif;
 }
 
+@font-face {
+    font-family: 'Cowboy Outlaw';
+    src: url('./assets/font-family/cowboy-outlaw/Cowboy\ Outlaw.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+} 
+
 h1 {
+    font-family: 'Cowboy Outlaw', sans-serif;
     font-weight: bold;
     font-size: 90px;
     margin-top: 30px;
@@ -256,6 +264,7 @@ footer {
     gap: 20px;
 }
 footer div a {
+    font-family: 'Cowboy Outlaw', sans-serif;
     color: rgb(0, 0, 0);
     font-size: 20px;
     text-decoration: none;
@@ -428,8 +437,11 @@ footer a:hover {
     #all-btn {
         display: none !important;
     }
+}
 
-    /* footer {
+@media only screen and (max-width: 480px) {
+        footer {
         display: none !important;
-    } */
+    }
+    
 }

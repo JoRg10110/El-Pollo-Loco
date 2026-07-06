@@ -215,7 +215,6 @@ class World {
           if (!(enemy instanceof SmallChicken) || enemy.isDead()) return;
           if (this.character.isColliding(enemy)) {
               if (this.character.isAboveGround() && this.character.speedY < 0) {
-                  console.log('SmallChicken besiegt!');
                   enemy.hit(100);
                   this.character.speedY = 15;
               } else {

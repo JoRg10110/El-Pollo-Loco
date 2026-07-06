@@ -185,16 +185,11 @@ class Endboss extends MovableObject {
       this.speed = 0.5;
       this.moveLeft();
       this.otherDirection = false;
-      console.log(distance,'Boss nähe');
     } else {
       this.speed = 0;
-      console.log('Boss steht vor Pepe und wartet auf Sprung');
     }
-
     if (distance < 220 && Math.random() < 0.02) {
-      console.log('Boss springt Pepe an!');
       this.attackJump();
-      console.log(distance);
     }
   }
 
@@ -252,7 +247,6 @@ class Endboss extends MovableObject {
    */
   attackJump() {
     if (this.isAboveGround()) return;
-    console.log('Boss startet Sprung-Attacke');
     this.jump();
 
     let landingCheck = setInterval(() => {
@@ -262,7 +256,6 @@ class Endboss extends MovableObject {
         clearInterval(landingCheck);
         this.isBouncing = true;
         this.bounceCounter = 25;
-        console.log(('Boss gelandet - Bounce startet!'));
       }
     }, 1000 / 60);
   }
@@ -278,7 +271,6 @@ class Endboss extends MovableObject {
     } else {
         this.isBouncing = false;
         this.otherDirection = false;
-        console.log('Bounce beendet - Boss greift wieder an!');
     }
 }
 
