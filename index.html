@@ -52,7 +52,42 @@
     <div id="game-container">
         <div id="start-screen">
             <img class="bg-img" src="./img/9_intro_outro_screens/start/startscreen_1.png">
-            <p onclick="startGame()" id="start_btn">Spiel Starten</p>
+            <div class="start-actions">
+                <p onclick="startGame()" id="start_btn">Start Game</p>
+                <!-- Jetzt als eleganter Text-Button unter Start Game -->
+                <p onclick="toggleInstructions()" id="instruction_btn">Instructions</p>
+            </div>
+        </div>
+
+        <!-- GAME INSTRUCTIONS OVERLAY -->
+        <div id="instruction-overlay" class="d-none">
+    <div class="instruction-content">
+        <h2>How to Play</h2>
+        
+        <div class="instruction-scroll">
+            <p class="story-text">Help Pepe defeat the crazy chickens and the mighty Endboss! Collect items along your journey to survive.</p>
+            
+            <div class="instruction-section">
+                <h3>Controls</h3>
+                <div class="control-grid">
+                    <div class="control-row"><img src="./img/btn/left-arrow.png" alt="Left"> <span>Move Left</span></div>
+                    <div class="control-row"><img src="./img/btn/right-arrow.png" alt="Right"> <span>Move Right</span></div>
+                    <div class="control-row"><img src="./img/btn/space.png" alt="Space"> <span>Jump</span></div>
+                    <div class="control-row"><img src="./img/btn/letter-d.png" alt="D"> <span>Throw Bottle</span></div>
+                </div>
+            </div>
+
+            <div class="instruction-section">
+                <h3>Collectibles</h3>
+                <div class="items-row">
+                    <div class="item-info"><img src="img/7_statusbars/1_statusbar/1_statusbar_coin/blue/100.png" alt="Coin"> <span>Coins fill your score</span></div>
+                    <div class="item-info"><img src="img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/100.png" alt="Bottle"> <span>Bottles give ammo</span></div>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="toggleInstructions()" class="close-btn">Got it!</button>
+    </div>
         </div>
 
         <div id="game-over-screen" class="d-none">

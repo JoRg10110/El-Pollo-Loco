@@ -256,6 +256,120 @@ canvas {
     color: black;
 }
 
+#instruction-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 150;
+    color: white;
+}
+
+.instruction-content {
+    background: #4a3319;
+    padding: clamp(10px, 3.5cqw, 24px);
+    border: 3px solid black;
+    border-radius: 10px;
+    text-align: center;
+    width: 75%; height: 80%;
+    display: flex; flex-direction: column;
+    box-sizing: border-box;
+}
+
+.instruction-content h2 {
+    font-family: 'Cowboy Outlaw', sans-serif;
+    color: orange;
+    margin: 0 0 10px 0;
+    font-size: clamp(20px, 5cqw, 36px);
+    text-shadow: 1px 1px 2px black;
+}
+
+.instruction-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 5px;
+    margin-bottom: 10px;
+}
+
+.story-text {
+    font-size: clamp(12px, 2.2cqw, 15px);
+    line-height: 1.4;
+    color: #f5edd6;
+    margin-bottom: 15px;
+}
+
+.instruction-section {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+
+.instruction-section h3 {
+    font-family: 'Cowboy Outlaw', sans-serif;
+    margin: 0 0 8px 0;
+    font-size: clamp(14px, 3cqw, 20px);
+    color: orange;
+}
+
+.control-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.control-row, .item-info {
+    display: flex; align-items: center; gap: 10px;
+    font-size: clamp(11px, 2.2cqw, 14px);
+    text-align: left;
+}
+
+.control-row img {
+    width: clamp(25px, 6cqw, 40px);
+    height: auto;
+}
+
+.items-row {
+    display: flex; justify-content: space-around; gap: 10px;
+}
+
+.item-info img {
+    height: clamp(20px, 5cqw, 30px);
+    width: auto;
+}
+
+#instruction_btn {
+    font-size: clamp(16px, 4.5cqw, 32px);
+    font-family: 'Cowboy Outlaw', sans-serif;
+    color: rgb(255, 255, 255);
+    border: none;
+    cursor: pointer;
+    margin: 0;
+    text-shadow: 1px 1px 2px black;
+    z-index: 11;
+    transition: color 0.2s ease;
+}
+
+#instruction_btn:hover {
+    color: orange;
+}
+
+.start-actions {
+    position: absolute;
+    top: 14%; 
+    left: 5%;
+    display: flex; 
+    flex-direction: column; 
+    gap: 5px;
+    z-index: 12;
+}
+
+#start_btn {
+    position: static !important;
+    margin: 0;
+}
+
 footer {
     display: flex;
     flex-direction: row;
@@ -263,12 +377,14 @@ footer {
     align-items: center;
     gap: 20px;
 }
+
 footer div a {
     font-family: 'Cowboy Outlaw', sans-serif;
     color: rgb(0, 0, 0);
     font-size: 20px;
     text-decoration: none;
 }
+
 footer a:hover {
     color: orange;
 }
@@ -439,7 +555,7 @@ footer a:hover {
     }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 480px    ) {
         footer {
         display: none !important;
     }

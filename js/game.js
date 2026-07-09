@@ -123,6 +123,16 @@ function checkHudVisibility () {
 }
 
 /**
+ * Toggles the visibility of the game instructions overlay screen.
+ */
+function toggleInstructions() {
+    let overlay = document.getElementById('instruction-overlay');
+    if (overlay) {
+        overlay.classList.toggle('d-none');
+    }
+}
+
+/**
  * Listens directly to domestic window mutation actions to automatically reflow overlay elements if a match context is active.
  */
 window.addEventListener('resize', () => {
