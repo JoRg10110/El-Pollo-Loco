@@ -1,6 +1,6 @@
 /**
  * Represents the visual UI status bar for tracking and displaying the ammunition capacity of throwables (salsa bottles).
- * @extends DrawableObject
+ * @extends StatusBar
  */
 class StatusBarBottle extends StatusBar {
 

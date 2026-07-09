@@ -1,6 +1,6 @@
 /**
  * Represents the visual UI status bar for tracking and displaying the number of collected coins.
- * @extends DrawableObject
+ * @extends StatusBar
  */
 class StatusBarCoin extends StatusBar {
 

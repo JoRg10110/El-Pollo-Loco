@@ -1,6 +1,6 @@
 /**
  * Represents the visual UI status bar for tracking and displaying the player character's health.
- * @extends DrawableObject
+ * @extends StatusBar
  */
 class StatusBarHealth extends StatusBar {
     
