@@ -2,7 +2,7 @@
  * Represents the visual UI status bar for tracking and displaying the player character's health.
  * @extends DrawableObject
  */
-class StatusBarHealth extends DrawableObject {
+class StatusBarHealth extends StatusBar {
     
     /** @type {string[]} Array containing paths to the health status bar asset frames. */
     IMAGES_HEALTH = [
@@ -19,12 +19,8 @@ class StatusBarHealth extends DrawableObject {
      */
     constructor() { 
         super();
-        this.percentage = 100;
         this.loadImages(this.IMAGES_HEALTH);
-        this.x = 20;
         this.y = 0;
-        this.width = 200;
-        this.height = 60;
         this.setHealthPercentage(100);
     }
 
@@ -33,9 +29,7 @@ class StatusBarHealth extends DrawableObject {
      * @param {number} percentage - The updated character energy level value.
      */
     setHealthPercentage(percentage) {
-        this.percentage = percentage; 
-        let path = this.IMAGES_HEALTH[this.resolveImageIndex()];
-        this.img = this.imageCache[path];
+        this.setPercentage(percentage, this.IMAGES_HEALTH);
     } 
 
     /**
