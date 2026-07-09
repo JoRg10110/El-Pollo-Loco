@@ -63,52 +63,34 @@ class Keyboard {
   /**
    * Registers touch interface listeners for mobile HUD buttons with a brief initialization timeout.
    */
-  bindBtnEvents() {
-    setTimeout(() => {
-      let btnLeft = document.getElementById("btn-Left");
-      if (btnLeft) {
-        btnLeft.addEventListener("touchstart", (e) => {
-          e.preventDefault();
-          this.LEFT = true;
-        });
-        btnLeft.addEventListener("touchend", (e) => {
-          e.preventDefault();
-          this.LEFT = false;
-        });
-      }
-      let btnRight = document.getElementById("btn-Right");
-      if (btnRight) {
-        btnRight.addEventListener("touchstart", (e) => {
-          e.preventDefault();
-          this.RIGHT = true;
-        });
-        btnRight.addEventListener("touchend", (e) => {
-          e.preventDefault();
-          this.RIGHT = false;
-        });
-      }
-      let btnUp = document.getElementById("btn-Up");
-      if (btnUp) {
-        btnUp.addEventListener("touchstart", (e) => {
-          e.preventDefault();
-          this.SPACE = true;
-        });
-        btnUp.addEventListener("touchend", (e) => {
-          e.preventDefault();
-          this.SPACE = false;
-        });
-      }
-      let btnThrow = document.getElementById("btn-Throw");
-      if (btnThrow) {
-        btnThrow.addEventListener("touchstart", (e) => {
-          e.preventDefault();
-          this.D = true;
-        });
-        btnThrow.addEventListener("touchend", (e) => {
-          e.preventDefault();
-          this.D = false;
-        });
-      }
-    }, 500);
+/**
+   * Binds touch events to all mobile control buttons after a short delay.
+   */
+bindBtnEvents() {
+  setTimeout(() => {
+    this.setupTouchButton("btn-Left", "LEFT");
+    this.setupTouchButton("btn-Right", "RIGHT");
+    this.setupTouchButton("btn-Up", "SPACE");
+    this.setupTouchButton("btn-Throw", "D");
+  }, 500);
+}
+
+/**
+ * Helper function to bind touchstart and touchend listeners to a specific button.
+ * @param {string} id - The HTML element ID of the button.
+ * @param {string} variableKey - The key of the keyboard state property (e.g., 'LEFT', 'SPACE').
+ */
+setupTouchButton(id, variableKey) {
+  let btn = document.getElementById(id);
+  if (btn) {
+    btn.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      this[variableKey] = true;
+    });
+    btn.addEventListener("touchend", (e) => {
+      e.preventDefault();
+      this[variableKey] = false;
+    });
   }
+}
 }
