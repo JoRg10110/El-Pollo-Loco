@@ -97,16 +97,11 @@ class World {
     if (this.keyboard.D && !this.keyboard.throwing) {
       if (this.statusBarBottle.percentage > 0) {
         let bottle = new ThrowableObject(
-          this.character.x + 100,
-          this.character.y + 100,
-          this
-        );
+        this.character.x + 100, this.character.y + 100, this);
         this.throwableObject.push(bottle);
-
         this.statusBarBottle.setBottlePercentage(
           this.statusBarBottle.percentage - 20
         );
-
         this.keyboard.throwing = true;
       }
     }
@@ -192,7 +187,6 @@ class World {
     this.level.enemies.forEach((enemy) => {
       if (!(enemy instanceof Chicken)) return;
       if (enemy.isDead()) return;
-
       if (this.character.isColliding(enemy)) {
         if (this.character.isAboveGround() && this.character.y < enemy.y && this.character.speedY < 0
         ) {
@@ -237,6 +231,8 @@ class World {
         document.getElementById("canvas").classList.add("d-none");
         document.getElementById("all-btn").classList.add("d-none");
         document.getElementById("hud").classList.add("d-none");
+        background_music.pause();
+        game_over_sound.play();
       }, 1500);
     }
   }

@@ -192,7 +192,6 @@ class Character extends MovableObject {
    */
   playCharacter() {
     this.updateIdleTime();
-    
     if (this.isDead()) {
         this.playDeadAnimation();
     } else if (this.isHurt()) {

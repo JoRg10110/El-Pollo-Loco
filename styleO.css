@@ -11,11 +11,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     font-family: 'Cowboy Outlaw', sans-serif;
-    min-height: 100vh;
-    margin: 0;
-    box-sizing: border-box;
 }
 
 @font-face {
@@ -29,10 +25,9 @@ h1 {
     font-family: 'Cowboy Outlaw', sans-serif;
     font-weight: bold;
     font-size: 90px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px 0;
-    line-height: 1.1;
+    margin-top: 30px;
+    margin-bottom: 0;
+    padding: 0;
     text-shadow: 1px 1px 3px black;
 }
 
@@ -77,78 +72,33 @@ canvas {
     z-index: -1;
 }
 
-.start-actions {
-    position: absolute;
-    top: 14%; 
-    left: 5%;
-    display: flex; 
-    flex-direction: column; 
-    gap: 12px;
-    z-index: 12;
-}
-
 #start_btn,
-#instruction_btn {
+#restart_btn {
+    position: absolute;
+    top: 14%;
+    left: 5%;
+    font-size: clamp(24px, 6.5cqw, 48px);
     font-family: 'Cowboy Outlaw', sans-serif;
     color: rgb(255, 255, 255);
     border: none;
     cursor: pointer !important;
     margin: 0;
-    padding: 0;
     text-shadow: 1px 1px 2px black;
-    background: transparent;
-    text-align: left;
-}
-
-#start_btn {
-    font-size: clamp(24px, 6.5cqw, 48px);
-}
-
-#instruction_btn {
-    font-size: clamp(16px, 4.5cqw, 32px);
-    transition: color 0.2s ease;
+    z-index: 11;
 }
 
 #restart_btn {
-    position: absolute;
-    bottom: 12%; /* Setzt den Text perfekt auf die hölzerne Freifläche der Grafik */
-    left: 50%;
-    transform: translateX(-50%); /* Garantiert die exakte mathematische Mitte */
-    font-size: clamp(22px, 5.5cqw, 42px);
-    font-family: 'Cowboy Outlaw', sans-serif;
-    color: rgb(255, 255, 255);
-    border: none;
-    cursor: pointer !important;
-    margin: 0;
-    text-shadow: 2px 2px 4px black;
-    background: transparent;
-    z-index: 55;
-    white-space: nowrap; /* Verhindert ungewollte Zeilenumbrüche */
+    top: 80%;
+    left: 33%;
+
 }
 
 #start_btn:hover,
-#instruction_btn:hover,
 #restart_btn:hover {
     color: orange;
 }
 
-#game-over-screen {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 50; /* Liegt sicher über dem Canvas und dem HUD */
-}
-
 #game-over-screen img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     background-color: transparent !important;
 }
 
@@ -167,6 +117,7 @@ canvas {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    
 }
 
 #info-btn {
@@ -200,6 +151,7 @@ canvas {
     padding: 12px;
     box-sizing: border-box;
     pointer-events: none;
+    
 }
 
 #hud:not(.d-none) {
@@ -289,7 +241,21 @@ canvas {
     accent-color: orange;
 }
 
-#instruction-overlay, #legal-overlay, #privacy-overlay {
+.close-btn {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-family: 'Cowboy Outlaw', sans-serif;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background-color: orange;
+    color: black;
+}
+
+#instruction-overlay {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
@@ -366,6 +332,7 @@ canvas {
 }
 
 .items-row {
+    /* display: flex;  */
     justify-content: space-around; 
     gap: 10px;
 }
@@ -375,18 +342,35 @@ canvas {
     width: auto;
 }
 
-.close-btn {
-    background-color: black;
-    color: white;
-    border: 2px solid orange;
-    padding: 8px 16px;
+#instruction_btn {
+    font-size: clamp(16px, 4.5cqw, 32px);
     font-family: 'Cowboy Outlaw', sans-serif;
+    color: rgb(255, 255, 255);
+    border: none;
     cursor: pointer;
+    margin: 0;
+    text-shadow: 1px 1px 2px black;
+    z-index: 11;
+    transition: color 0.2s ease;
 }
 
-.close-btn:hover {
-    background-color: orange;
-    color: black;
+#instruction_btn:hover {
+    color: orange;
+}
+
+.start-actions {
+    position: absolute;
+    top: 14%; 
+    left: 5%;
+    display: flex; 
+    flex-direction: column; 
+    gap: 5px;
+    z-index: 12;
+}
+
+#start_btn {
+    position: static !important;
+    margin: 0;
 }
 
 footer {
@@ -394,10 +378,7 @@ footer {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 30px;
-    margin-top: 15px;
-    width: 100%;
-    max-width: 720px;
+    gap: 20px;
 }
 
 footer div a {
@@ -409,6 +390,66 @@ footer div a {
 
 footer a:hover {
     color: orange;
+}
+
+.legal-container {
+    width: 100%;
+    max-width: 720px;
+    margin: 40px auto;
+    padding: 24px;
+    background: #4a3319;
+    border: 4px solid #2b1e0f;
+    border-radius: 12px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.6);
+    color: #f5edd6;
+    font-family: sans-serif; 
+    box-sizing: border-box;
+}
+
+.legal-container h2 {
+    font-family: 'Cowboy Outlaw', sans-serif; 
+    color: orange;
+    font-size: 32px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px black;
+    border-bottom: 2px solid orange;
+    padding-bottom: 8px;
+}
+
+.legal-container h3 {
+    font-family: 'Cowboy Outlaw', sans-serif;
+    color: #f5edd6;
+    font-size: 20px;
+    margin-top: 24px;
+    margin-bottom: 10px;
+}
+
+.legal-container p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.legal-container strong {
+    color: orange;
+}
+
+.legal-container a {
+    color: orange;
+    text-decoration: underline;
+}
+
+.legal-container a:hover {
+    color: white;
+}
+
+.legal-container hr {
+    border: 0;
+    height: 2px;
+    background: orange;
+    margin: 40px 0;
+    opacity: 0.5;
 }
 
 @keyframes rotate {
@@ -440,28 +481,26 @@ footer a:hover {
     #all-btn {
         display: none !important;
     }
+
+    /* footer {
+        display: none !important;
+    } */
 }
 
 @media (orientation: portrait) and (pointer: coarse) {
     #rotate-device-overlay {
         position: fixed;
-        top: 0; 
-        left: 0; 
-        width: 100%; 
-        height: 100%;
+        top: 0; left: 0; width: 100%; height: 100%;
         background-color: rgba(0, 0, 0, 0.9);
         z-index: 999;
         display: flex !important;
-        justify-content: center; 
-        align-items: center;
-        color: white; 
-        text-align: center;
+        justify-content: center; align-items: center;
+        color: white; text-align: center;
     }
     #game-container, #title, h1, #all-btn {
         display: none !important;
     }
 }
-
 
 @media (orientation: landscape) and (pointer: coarse) {
     #rotate-device-overlay {
@@ -508,40 +547,20 @@ footer a:hover {
         display: flex !important;
     }
 
-    .panel {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        margin-top: auto;
-        pointer-events: auto;
-    }
-
     .panel-btn {
         width: 8vw !important; 
         max-width: 45px;
         height: auto !important;
         aspect-ratio: 1 / 1;
     }
-
     #all-btn {
         display: none !important;
     }
-
 }
 
-@media (orientation: landscape) and (pointer: coarse) and (min-width: 912px) {
-    #hud:not(.d-none) {
-        padding: 20px 5px !important;
-    }
-
-    .panel-btn {
-        width: 12vw !important; 
-        max-width: 75px !important;
-    }
-}
-
-@media only screen and (max-width: 1000px) {
-    footer {
+@media only screen and (max-width: 480px    ) {
+        footer {
         display: none !important;
     }
+    
 }

@@ -41,6 +41,7 @@ function startGame() {
     document.getElementById('all-btn').classList.remove('d-none');
     document.getElementById('top-buttons').classList.remove('d-none');
 
+    
     background_music.play();
     checkHudVisibility();
     initLevel();
@@ -52,13 +53,15 @@ function startGame() {
  */
 function restartGame() {
     stopGame();
-
+    
     document.getElementById('game-over-screen').classList.add('d-none');
     document.getElementById('start-screen').classList.add('d-none');
     document.getElementById('canvas').classList.remove('d-none');
     document.getElementById('all-btn').classList.remove('d-none');
     document.getElementById('top-buttons').classList.remove('d-none');
 
+    game_over_sound.pause();
+    background_music.play();
     checkHudVisibility();
     initLevel();
     init();
@@ -72,7 +75,6 @@ function goHome(){
 
     document.getElementById('start-screen').classList.remove('d-none');
     document.getElementById('game-over-screen').classList.add('d-none');
-    
     document.getElementById('hud').classList.add('d-none');
     document.getElementById('top-buttons').classList.add('d-none');
     document.getElementById('all-btn').classList.add('d-none');
@@ -113,6 +115,7 @@ function stopGame(){
 function checkHudVisibility () {
     let hud = document.getElementById('hud');
     let allBtn = document.getElementById('all-btn');
+
     if (window.innerWidth <= 768) {
         hud.classList.remove('d-none');
         allBtn.classList.add('d-none');
@@ -133,12 +136,34 @@ function toggleInstructions() {
 }
 
 /**
+ * Toggles the visibility of the legal notice (Impressum) overlay screen.
+ */
+function toggleLegal() {
+    let overlay = document.getElementById('legal-overlay');
+    if (overlay) {
+        overlay.classList.toggle('d-none');
+    }
+}
+
+/**
+ * Toggles the visibility of the privacy policy (Datenschutz) overlay screen.
+ */
+function togglePrivacy() {
+    let overlay = document.getElementById('privacy-overlay');
+    if (overlay) {
+        overlay.classList.toggle('d-none');
+    }
+}
+
+/**
  * Listens directly to domestic window mutation actions to automatically reflow overlay elements if a match context is active.
  */
 window.addEventListener('resize', () => {
     let isGameRunning = document.getElementById('start-screen').classList.contains('d-none');
+    let isGameOver = !document.getElementById('game-over-screen').classList.contains('d-none');
     
-    if (isGameRunning) {
+    // Läuft nur weiter, wenn das Spiel läuft UND nicht im Game Over State festsitzt
+    if (isGameRunning && !isGameOver) {
         checkHudVisibility();
     }
 });

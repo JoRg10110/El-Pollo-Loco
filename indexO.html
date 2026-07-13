@@ -26,6 +26,7 @@
     <script src="./models/collectable-bottle.class.js"></script>
     <script src="./models/collectable-coin.class.js"></script>
 
+
     <script src="./models/levels.class.js"></script>
     <script src="./levels/level1.js"></script>
     
@@ -34,6 +35,7 @@
     <script src="./models/keyboard.class.js"></script>
     <script src="./js/sound.js"></script>
     <script src="./js/game.js" ></script>
+
 </head>
 <body>
     <h1 id="title">El Pollo Loco</h1>
@@ -45,96 +47,80 @@
         </div>
     </div>
 
+
+
     <div id="game-container">
         <div id="start-screen">
             <img class="bg-img" src="./img/9_intro_outro_screens/start/startscreen_1.png">
             <div class="start-actions">
                 <p onclick="startGame()" id="start_btn">Start Game</p>
+                <!-- Jetzt als eleganter Text-Button unter Start Game -->
                 <p onclick="toggleInstructions()" id="instruction_btn">Instructions</p>
             </div>
         </div>
 
         <!-- GAME INSTRUCTIONS OVERLAY -->
         <div id="instruction-overlay" class="d-none">
-            <div class="instruction-content">
-                <h2>How to Play</h2>
-                <div class="instruction-scroll">
-                    <p class="story-text">Help Pepe defeat the crazy chickens and the mighty Endboss! Collect items along your journey to survive.</p>
-                    <div class="instruction-section">
-                        <h3>Controls</h3>
-                        <div class="control-grid">
-                            <div class="control-row"><img src="./img/btn/left-arrow.png" alt="Left"> <span>Move Left</span></div>
-                            <div class="control-row"><img src="./img/btn/right-arrow.png" alt="Right"> <span>Move Right</span></div>
-                            <div class="control-row"><img src="./img/btn/space.png" alt="Space"> <span>Jump</span></div>
-                            <div class="control-row"><img src="./img/btn/letter-d.png" alt="D"> <span>Throw Bottle</span></div>
-                        </div>
-                    </div>
-                    <div class="instruction-section">
-                        <h3>Collectibles</h3>
-                        <div class="items-row">
-                            <div class="item-info"><img src="img/7_statusbars/1_statusbar/1_statusbar_coin/blue/100.png" alt="Coin"> <span>Coins fill your score</span></div>
-                            <div class="item-info"><img src="img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/100.png" alt="Bottle"> <span>Bottles give ammo</span></div>
-                        </div>
-                    </div>
+    <div class="instruction-content">
+        <h2>How to Play</h2>
+        
+        <div class="instruction-scroll">
+            <p class="story-text">Help Pepe defeat the crazy chickens and the mighty Endboss! Collect items along your journey to survive.</p>
+            
+            <div class="instruction-section">
+                <h3>Controls</h3>
+                <div class="control-grid">
+                    <div class="control-row"><img src="./img/btn/left-arrow.png" alt="Left"> <span>Move Left</span></div>
+                    <div class="control-row"><img src="./img/btn/right-arrow.png" alt="Right"> <span>Move Right</span></div>
+                    <div class="control-row"><img src="./img/btn/space.png" alt="Space"> <span>Jump</span></div>
+                    <div class="control-row"><img src="./img/btn/letter-d.png" alt="D"> <span>Throw Bottle</span></div>
                 </div>
-                <button onclick="toggleInstructions()" class="close-btn">Got it!</button>
+            </div>
+
+            <div class="instruction-section">
+                <h3>Collectibles</h3>
+                <div class="items-row">
+                    <div class="item-info"><img src="img/7_statusbars/1_statusbar/1_statusbar_coin/blue/100.png" alt="Coin"> <span>Coins fill your score</span></div>
+                    <div class="item-info"><img src="img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/100.png" alt="Bottle"> <span>Bottles give ammo</span></div>
+                </div>
             </div>
         </div>
 
-        <!-- IMPRESSUM OVERLAY -->
-        <div id="legal-overlay" class="d-none">
-            <div class="instruction-content">
-                <h2>Legal Notice</h2>
-                <div class="instruction-scroll">
-                    <p class="story-text">
-                        <strong>Information according to § 5 TMG:</strong><br><br>
-                        Jörg Eisenbraun<br>
-                        [Deine Straße]<br>
-                        [Deine PLZ und Ort]<br><br>
-                        <strong>Contact:</strong><br>
-                        Email: [Deine E-Mail-Adresse]
-                    </p>
-                </div>
-                <button onclick="toggleLegal()" class="close-btn">Close</button>
-            </div>
+        <button onclick="toggleInstructions()" class="close-btn">Got it!</button>
+    </div>
         </div>
-
-        <!-- DATENSCHUTZ OVERLAY -->
-        <div id="privacy-overlay" class="d-none">
-            <div class="instruction-content">
-                <h2>Privacy Policy</h2>
-                <div class="instruction-scroll">
-                    <p class="story-text">
-                        <strong>Data Protection Overview</strong><br><br>
-                        This game runs entirely in your local browser environment. No personal user tracking data is collected, stored, or processed on external web servers.<br><br>
-                        Browser LocalStorage may be utilized exclusively to store your personal highscore locally on your device.
-                    </p>
-                </div>
-                <button onclick="togglePrivacy()" class="close-btn">Close</button>
-            </div>
-        </div>
+        
 
         <div id="game-over-screen" class="d-none">
             <img src="./img/9_intro_outro_screens/game_over/game over.png" height="480px" width="720px">
             <p onclick="restartGame()" id="restart_btn">Restart Game</p>
         </div>
 
+    
         <canvas id="canvas" width="720" height="480"></canvas>
 
         <div id="top-buttons" class="panel flex-end zero d-none">
-            <button class="panel-btn" onclick="goHome()"><img src="./img/btn/Home.png" alt=""></button>
-            <button class="panel-btn" onclick="toggleMute()"><img id="mute-icon" src="./img/btn/Volume.png" alt=""></button>
+            <button class="panel-btn" onclick="goHome()" ><img src="./img/btn/Home.png" alt="">
+            </button>
+            <!-- <button class="panel-btn" onclick="toggleSettingsOverlay()"><img src="./img/btn/Settings.png" alt=""> -->
+            </button>
+            <button  class="panel-btn" onclick="toggleMute()"><img id="mute-icon" src="./img/btn/Volume.png" alt="">
+            </button>
         </div>
 
         <div id="hud" class="d-none"> 
             <div class="panel zero">
                 <div class="panel-wrapper">
-                    <button id="btn-Left" class="panel-btn"><img src="./img/btn/Left.png" alt=""></button>
-                    <button id="btn-Right" class="panel-btn"><img src="./img/btn/Right.png" alt=""></button>
+                    <button id="btn-Left" class="panel-btn"><img src="./img/btn/Left.png" alt="">
+                    </button>
+                    <button id="btn-Right" class="panel-btn"><img src="./img/btn/Right.png" alt="">
+                    </button>
                 </div>
                 <div class="panel-wrapper">
-                    <button id="btn-Up" class="panel-btn"><img src="./img/btn/Up.png" alt=""></button>
-                    <button id="btn-Throw" class="panel-btn"><img src="./img/btn/Throw.png" alt=""></button>
+                    <button id="btn-Up" class="panel-btn"><img src="./img/btn/Up.png" alt="">
+                    </button>
+                    <button id="btn-Throw" class="panel-btn"><img src="./img/btn/Throw.png" alt="">
+                    </button>
                 </div>
             </div>
         </div>
@@ -157,19 +143,22 @@
             <img src="./img/btn/right-arrow.png" width="50px" height="50px"> Right
             <img src="./img/btn/space.png" width="50px" height="50px"> Jump
             <img src="./img/btn/letter-d.png" width="50px" height="50px"> Throw
+            <!-- <img src="./img/btn/letter-b.png" width="50px" height="50px"> Debug -->
+
         </div>
         <div id="btn">
             <button onclick="goFullScreen()"><img src="./img/btn/maximize.png" width="30px"></button>
         </div>
     </div>
 
-    <footer>
-        <div>
-            <a href="#" onclick="event.preventDefault(); toggleLegal();">Impressum</a>
-        </div>
-        <div>
-            <a href="#" onclick="event.preventDefault(); togglePrivacy();">Datenschutz</a>
-        </div>
-    </footer>
 </body>
+
+<footer>
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="impressum.html" target="_blank">Impressum</a>
+        </div>
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="datenschutz.html" target="_blank">Datenschutz</a>
+        </div>
+</footer>
 </html>
