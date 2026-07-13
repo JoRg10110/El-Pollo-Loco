@@ -27,16 +27,19 @@ function initLevel() {
 function createEnemies() {
     /** @type {MovableObject[]} Temporary tracking collection storing generated enemies. */
     let enemies = [];
+    let chickenStart = 600;
+    let chickenDistance = 350;
     for (let i = 0; i < 7; i++) {
-        let xPos = 600 + Math.random() * 2400;
+        let xPos = chickenStart + (i * chickenDistance) + (Math.random() * 80);
         enemies.push(new Chicken(xPos));
     }
+    let smallChickenStart = 800;
+    let smallChickenDistance = 500;
     for (let i = 0; i < 4; i++) {
-        let xPos = 600 + Math.random() * 2400;
+        let xPos = smallChickenStart + (i * smallChickenDistance) + (Math.random() * 100);
         enemies.push(new SmallChicken(xPos));
     }
     enemies.push(new Endboss());
-
     return enemies;
 }
 

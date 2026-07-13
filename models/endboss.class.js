@@ -154,7 +154,7 @@ class Endboss extends MovableObject {
 
     let distance = this.getDistanceToCharakter();
 
-    if (distance < 400) this.handleAttack();
+    if (distance < 600) this.handleAttack();
     else if (this.hadFirstContact) this.handleReturn();
   }
 
@@ -182,7 +182,7 @@ class Endboss extends MovableObject {
     let distance = this.getDistanceToCharakter();
 
     if (distance > 200) {
-      this.speed = 0.5;
+      this.speed = 2;
       this.moveLeft();
       this.otherDirection = false;
     } else {

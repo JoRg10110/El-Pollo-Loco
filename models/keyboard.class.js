@@ -22,7 +22,6 @@ class Keyboard {
   
   /** @type {boolean} Flag indicating if the throw weapon command is active. */
   D = false;
-//   debugMode = false;
 
   /** @type {boolean} Input lock flag to prevent constant rapid-fire loops on a single button press. */
   throwing = false;

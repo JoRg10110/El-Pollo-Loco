@@ -44,6 +44,7 @@ class World {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
+    this.lastThrowTime = 0;
     this.draw();
     this.setWorld();
     this.run();
@@ -94,21 +95,19 @@ class World {
    * Handles character throw inputs, managing ammunition costs and input locking flags.
    */
   checkThrowObjects() {
-    if (this.keyboard.D && !this.keyboard.throwing) {
-      if (this.statusBarBottle.percentage > 0) {
-        let bottle = new ThrowableObject(
-        this.character.x + 100, this.character.y + 100, this);
-        this.throwableObject.push(bottle);
-        this.statusBarBottle.setBottlePercentage(
-          this.statusBarBottle.percentage - 20
-        );
-        this.keyboard.throwing = true;
-      }
+    let currentTime = new Date().getTime();
+    
+    if (this.keyboard.D && (currentTime - this.lastThrowTime > 1000)) {
+        if (this.statusBarBottle.percentage > 0) {
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, this);
+            this.throwableObject.push(bottle);
+            this.statusBarBottle.setBottlePercentage(
+                this.statusBarBottle.percentage - 20
+            );
+            this.lastThrowTime = currentTime; 
+        }
     }
-    if (!this.keyboard.D) {
-      this.keyboard.throwing = false;
-    }
-  }
+}
 
   /**
    * Iterates through collectable bottles, updating tracking bars and playbacks on contact.

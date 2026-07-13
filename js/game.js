@@ -162,7 +162,6 @@ window.addEventListener('resize', () => {
     let isGameRunning = document.getElementById('start-screen').classList.contains('d-none');
     let isGameOver = !document.getElementById('game-over-screen').classList.contains('d-none');
     
-    // Läuft nur weiter, wenn das Spiel läuft UND nicht im Game Over State festsitzt
     if (isGameRunning && !isGameOver) {
         checkHudVisibility();
     }
