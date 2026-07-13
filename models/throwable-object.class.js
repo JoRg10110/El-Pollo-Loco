@@ -107,21 +107,24 @@ class ThrowableObject extends MovableObject {
 
     this.currentImage = 0;
 
-    let splashInterval = setStopGameInterval(() => {
-      this.playAnimation(this.IMAGES_SPLASH_BOTTLE);
+    let splashInterval = setStopGameInterval(() => this.handleSplashAnimation(splashInterval),100);
+  }
 
-      if (this.currentImage >= this.IMAGES_SPLASH_BOTTLE.length) {
-        clearInterval(splashInterval);
-        if (this.world && this.world.throwableObject) {
-          let index = this.world.throwableObject.indexOf(this);
-          if (index > -1) {
-            this.world.throwableObject.splice(
-              this.world.throwableObject.indexOf(this),
-              1
-            );
-          }
+  handleSplashAnimation(intervalId){
+    this.playAnimation(this.IMAGES_SPLASH_BOTTLE);
+
+    if (this.currentImage >= this.IMAGES_SPLASH_BOTTLE.length) {
+      clearInterval(intervalId);
+      this.removeBottleFromWorld();
+    }
+  }
+  
+  removeBottleFromWorld() {
+    if (this.world && this.world.throwableObject) {
+      let index = this.world.throwableObject.indexOf(this);
+      if (index > -1) {
+        this.world.throwableObject.splice(index, 1)
         }
       }
-    }, 100);
-  }
+    }
 }

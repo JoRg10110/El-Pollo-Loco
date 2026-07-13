@@ -184,20 +184,35 @@ class World {
    */
   checkChickenCollision() {
     this.level.enemies.forEach((enemy) => {
-      if (!(enemy instanceof Chicken)) return;
-      if (enemy.isDead()) return;
+      if (!(enemy instanceof Chicken) || enemy.isDead()) return;
+
       if (this.character.isColliding(enemy)) {
-        if (this.character.isAboveGround() && this.character.y < enemy.y && this.character.speedY < 0
-        ) {
-          enemy.hit(100);
-          this.character.speedY = 20;
+        if (this.isCharacterJumpingOnEnemy(enemy)) {
+          this.killEnemyOnJump(enemy);
         } else {
-          this.character.hit();
-          hurt_sound.play();
-          this.statusBarHealth.setHealthPercentage(this.character.energy);
+          this.damageCharacter();
         }
       }
     });
+  }
+
+  isCharacterJumpingOnEnemy(enemy) {
+    return (
+      this.character.isAboveGround() && 
+      this.character.y < enemy.y && 
+      this.character.speedY < 0
+    );
+  }
+
+  killEnemyOnJump(enemy) {
+    enemy.hit(100);
+    this.character.speedY = 20;
+  }
+
+  damageCharacter() {
+    this.character.hit();
+    hurt_sound.play();
+    this.statusBarHealth.setHealthPercentage(this.character.energy);
   }
 
   /**

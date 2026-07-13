@@ -41,22 +41,16 @@ class Keyboard {
     window.addEventListener('keydown', (e) => {
         if (e.key === 'b' || e.key === 'B') debugMode = !debugMode;
     });
+    document.addEventListener("keydown", (e) => this.handleKeyState(e, true));
+    document.addEventListener("keyup", (e) => this.handleKeyState(e, false));
+  }
 
-    document.addEventListener("keydown", (e) => {
-      if (e.code == "ArrowRight") this.RIGHT = true;
-      if (e.code == "ArrowLeft") this.LEFT = true;
-      if (e.code == "ArrowUp") this.UP = true;
-      if (e.code == "Space") this.SPACE = true;
-      if (e.code == "KeyD") this.D = true;
-    });
-
-    document.addEventListener("keyup", (e) => {
-      if (e.code == "ArrowRight") this.RIGHT = false;
-      if (e.code == "ArrowLeft") this.LEFT = false;
-      if (e.code == "ArrowUp") this.UP = false;
-      if (e.code == "Space") this.SPACE = false;
-      if (e.code == "KeyD") this.D = false;
-    });
+  handleKeyState(e, isPressed) {
+    if (e.code == "ArrowRight") this.RIGHT = isPressed;
+    if (e.code == "ArrowLeft") this.LEFT = isPressed;
+    if (e.code == "ArrowUp") this.UP = isPressed;
+    if (e.code == "Space") this.SPACE = isPressed;
+    if (e.code == "KeyD") this.D = isPressed;
   }
 
   /**

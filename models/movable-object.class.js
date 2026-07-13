@@ -82,25 +82,26 @@ class MovableObject extends DrawableObject {
      * @param {MovableObject} mo - The target object context to test against.
      * @returns {boolean} True if the mathematical box coordinates overlap, otherwise false.
      */
-    isColliding(mo){
-
-        let myLeft = this.x + this.hitboxOffsetX;
-        let myRight = this.x + this.hitboxOffsetX + this.width - this.hitboxWidth;
-        let myTop = this.y + this.hitboxOffsetY;
-        let myBottom = this.y + this.hitboxOffsetY + this.height - this.hitboxHeight;
-
-        let moLeft = mo.x + mo.hitboxOffsetX;
-        let moRight = mo.x + mo.hitboxOffsetX + mo.width - mo.hitboxWidth;
-        let moTop = mo.y + mo.hitboxOffsetY;
-        let moBottom = mo.y + mo.hitboxOffsetY + mo.height - mo.hitboxHeight;
-
+    getHitbox() {
+        return {
+          left: this.x + this.hitboxOffsetX,
+          right: this.x + this.hitboxOffsetX + this.width - this.hitboxWidth,
+          top: this.y + this.hitboxOffsetY,
+          bottom: this.y + this.hitboxOffsetY + this.height - this.hitboxHeight
+        };
+      }
+    
+    isColliding(mo) {
+        let my = this.getHitbox();
+        let moBox = mo.getHitbox();
+    
         return (
-            myRight > moLeft &&
-            myBottom > moTop &&
-            myLeft < moRight &&
-            myTop < moBottom
-        )
-    }
+          my.right > moBox.left &&
+          my.bottom > moBox.top &&
+          my.left < moBox.right &&
+          my.top < moBox.bottom
+        );
+      }
 
     /**
      * Decreases the element vitality metrics by a given amount while establishing post-hit delay timers.

@@ -172,15 +172,21 @@ class Endboss extends MovableObject {
    */
   handleAttack() {
     this.hadFirstContact = true;
-    if (this.isBouncing){
+    
+    if (this.isBouncing) {
       this.executeBounceMovement();
       return;
-    } 
+    }
 
     if (this.isAboveGround()) return;
 
     let distance = this.getDistanceToCharakter();
+    
+    this.executeGroundMovement(distance);
+    this.checkAttackJumpChance(distance);
+  }
 
+  executeGroundMovement(distance) {
     if (distance > 200) {
       this.speed = 2;
       this.moveLeft();
@@ -188,6 +194,9 @@ class Endboss extends MovableObject {
     } else {
       this.speed = 0;
     }
+  }
+
+  checkAttackJumpChance(distance) {
     if (distance < 220 && Math.random() < 0.02) {
       this.attackJump();
     }
