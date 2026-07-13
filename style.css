@@ -66,7 +66,6 @@ canvas {
 .bg-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
     position: absolute;
     top: 0;
     left: 0;
@@ -82,7 +81,7 @@ canvas {
     font-family: 'Cowboy Outlaw', sans-serif;
     color: rgb(255, 255, 255);
     border: none;
-    cursor: pointer;
+    cursor: pointer !important;
     margin: 0;
     text-shadow: 1px 1px 2px black;
     z-index: 11;
@@ -320,7 +319,9 @@ canvas {
 }
 
 .control-row, .item-info {
-    display: flex; align-items: center; gap: 10px;
+    display: flex; 
+    align-items: center; 
+    gap: 10px;
     font-size: clamp(11px, 2.2cqw, 14px);
     text-align: left;
 }
@@ -331,7 +332,9 @@ canvas {
 }
 
 .items-row {
-    display: flex; justify-content: space-around; gap: 10px;
+    /* display: flex;  */
+    justify-content: space-around; 
+    gap: 10px;
 }
 
 .item-info img {

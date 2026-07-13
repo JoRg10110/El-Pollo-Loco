@@ -120,7 +120,7 @@ class World {
    */
   checkBottleCollection() {
     this.level.collectableBottles.forEach((bottle, index) => {
-      if (this.character.isColliding(bottle)) {
+      if (this.character.isColliding(bottle) && this.statusBarBottle.percentage < 100) {
         this.level.collectableBottles.splice(index, 1);
         this.statusBarBottle.addBottle();
         bottle_sound.play();
@@ -133,7 +133,7 @@ class World {
    */
   checkCoinCollection() {
     this.level.collectableCoins.forEach((coin, index) => {
-      if (this.character.isColliding(coin)) {
+      if (this.character.isColliding(coin) && this.statusBarCoin.percentage < 100) {
         this.level.collectableCoins.splice(index, 1);
         this.statusBarCoin.addCoin();
         coin_sound.play();
