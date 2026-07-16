@@ -101,7 +101,7 @@ class World {
         if (this.statusBarBottle.percentage > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, this);
             this.throwableObject.push(bottle);
-            this.statusBarBottle.setBottlePercentage(
+            this.statusBarBottle.setPercentage(
                 this.statusBarBottle.percentage - 20
             );
             this.lastThrowTime = currentTime; 
@@ -159,7 +159,7 @@ class World {
         bottle.splash();
         endboss.hit(20);
         bottle_splash_sound.play();
-        this.statusBarEndboss.setEndbossPercentage(endboss.energy);
+        this.statusBarEndboss.setPercentage(endboss.energy);
       }
     });
   }

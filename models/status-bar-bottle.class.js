@@ -4,32 +4,18 @@
  */
 class StatusBarBottle extends StatusBar {
 
-    /** @type {string[]} Array containing paths to the bottle status bar asset frames. */
-    IMAGES_BOTTLE = [
-        'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png',
-        'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/20.png',
-        'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/40.png',
-        'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/60.png',
-        'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/80.png',
-        'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/100.png'
-    ];
-
     /**
      * Creates an instance of the bottle status bar and initializes its display metrics.
      */
     constructor() {
-        super();
-        this.loadImages(this.IMAGES_BOTTLE);
-        this.y = 120;
-        this.setBottlePercentage(0);
-    }
-
-    /**
-     * Updates the bottle ammunition metric percentage and switches the rendered bar texture asset path.
-     * @param {number} percentage - The updated bottle progress scale value.
-     */
-    setBottlePercentage(percentage) {
-        this.setPercentage(percentage, this.IMAGES_BOTTLE);
+        super([
+            'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png',
+            'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/20.png',
+            'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/40.png',
+            'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/60.png',
+            'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/80.png',
+            'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/100.png'
+        ], 120, 0);
     }
 
     /**
@@ -40,6 +26,6 @@ class StatusBarBottle extends StatusBar {
         if (newPercentage > 100) {
             newPercentage = 100;
         }
-        this.setBottlePercentage(newPercentage);
+        this.setPercentage(newPercentage);
     }
 }

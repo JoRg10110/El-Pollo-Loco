@@ -3,22 +3,31 @@
  * @extends DrawableObject
  */
 class StatusBar extends DrawableObject {
-    constructor() {
+    /**
+     * @param {string[]} images - The specific image paths for this bar.
+     * @param {number} y - The vertical position on the screen.
+     * @param {number} startPercentage - The starting percentage (e.g., 100 or 0).
+     */
+    constructor(images, y, startPercentage) {
         super();
-        this.percentage = 0;
+        this.images = images;
+        this.percentage = startPercentage;
         this.x = 20;
+        this.y = y;
         this.width = 200;
         this.height = 60;
+
+        this.loadImages(this.images);
+        this.setPercentage(startPercentage);
     }
 
     /**
-     * Updates the local metric percentage and switches the rendered active bar texture asset path.
-     * @param {number} percentage - The updated progress scale value.
-     * @param {string[]} imagesArray - The image array of the child class.
+     * Updates the percentage and switches the rendered active bar texture.
+     * @param {number} percentage 
      */
-    setPercentage(percentage, imagesArray) {
+    setPercentage(percentage) {
         this.percentage = percentage;
-        let path = imagesArray[this.resolveImageIndex()];
+        let path = this.images[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
